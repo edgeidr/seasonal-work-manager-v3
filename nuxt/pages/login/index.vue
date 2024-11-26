@@ -33,9 +33,9 @@
 
 		<p class="px-8 text-center text-sm text-muted-foreground">
 			By clicking continue, you agree to our
-			<NuxtLink to="/terms" class="underline underline-offset-4 hover:text-primary"> Terms of Service </NuxtLink>
+			<NuxtLink to="#" class="underline underline-offset-4 hover:text-primary"> Terms of Service </NuxtLink>
 			and
-			<NuxtLink to="/privacy" class="underline underline-offset-4 hover:text-primary"> Privacy Policy </NuxtLink>
+			<NuxtLink to="#" class="underline underline-offset-4 hover:text-primary"> Privacy Policy </NuxtLink>
 			.
 		</p>
 	</div>

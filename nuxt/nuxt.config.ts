@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			appName: process.env.NUXT_APP_NAME || "",
+			brandName: process.env.NUXT_BRAND_NAME || "",
 		},
 	},
 	modules: ["@primevue/nuxt-module", "@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
