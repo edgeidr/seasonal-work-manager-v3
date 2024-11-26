@@ -12,7 +12,12 @@
 						<label class="sr-only" for="email"> Email </label>
 						<InputText placeholder="name@example.com" type="email" />
 					</div>
-					<Button label="Sign In with Email" :icon="isLoading ? 'pi pi-spinner pi-spin' : ''" :loading="isLoading" />
+					<Button
+						type="submit"
+						label="Sign In with Email"
+						:icon="isLoading ? 'pi pi-spinner pi-spin' : ''"
+						:loading="isLoading"
+						:disabled="isLoading || isLoadingGoogle" />
 				</div>
 			</form>
 			<div class="relative">
@@ -24,11 +29,13 @@
 				</div>
 			</div>
 			<Button
-				variant="outline"
+				type="button"
 				severity="secondary"
 				label="Google"
 				:icon="isLoadingGoogle ? 'pi pi-spinner pi-spin' : 'pi pi-google'"
-				:loading="isLoading" />
+				:disabled="isLoading || isLoadingGoogle"
+				:loading="isLoadingGoogle"
+				@click="googleSignIn" />
 		</div>
 
 		<p class="px-8 text-center text-sm text-muted-foreground">
@@ -54,6 +61,15 @@
 
 		setTimeout(async () => {
 			isLoading.value = false;
+			await navigateTo({ name: "index" });
+		}, 3000);
+	};
+
+	const googleSignIn = () => {
+		isLoadingGoogle.value = true;
+
+		setTimeout(async () => {
+			isLoadingGoogle.value = false;
 			await navigateTo({ name: "index" });
 		}, 3000);
 	};
