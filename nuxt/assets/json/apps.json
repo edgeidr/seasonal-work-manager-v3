@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Timekeeping and Attendance System",
+		"url": "http://localhost:3000/",
+		"logo": "",
+		"themeColor": "#EA580C"
+	},
+	{
+		"name": "Seat Booking Application",
+		"url": "http://localhost:3000/",
+		"logo": "",
+		"themeColor": "#16A34A"
+	},
+	{
+		"name": "Engagement Rewards Platform",
+		"url": "http://localhost:3000/",
+		"logo": "",
+		"themeColor": "#EA580C"
+	},
+	{
+		"name": "Document Request Tool",
+		"url": "http://localhost:3000/",
+		"logo": "",
+		"themeColor": "#2563EB"
+	},
+	{
+		"name": "Seasonal Work Manager",
+		"url": "http://localhost:3000/",
+		"logo": "",
+		"themeColor": "#16A34A"
+	}
+]
