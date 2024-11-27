@@ -9,15 +9,17 @@
 					item: { class: 'border-l' },
 					rootList: { class: 'pl-5' },
 				}">
-				<template #item="{ item }">
+				<template #item="{ item, root, active }">
 					<div v-if="item.groupLabel" class="mt-4 px-2">
 						<span class="text-xs uppercase font-medium">{{ item.label }}</span>
 					</div>
 
-					<NuxtLink v-else :to="item.route" class="flex gap-2 items-center px-3 py-2 text-sm">
-						<i :class="item.icon"></i>
-						<span>{{ item.label }}</span>
-						<i v-if="item.items" :class="['pi pi-angle-down', 'ml-auto']"></i>
+					<NuxtLink v-else :to="item.route" :class="[root ? 'p-panelmenu-header-link' : 'p-panelmenu-item-link', 'text-sm']">
+						<i :class="[root ? 'p-panelmenu-header-icon' : 'p-panelmenu-item-icon', item.icon]"></i>
+						<span :class="[root ? 'p-panelmenu-header-label' : 'p-panelmenu-item-label', 'truncate']">{{ item.label }}</span>
+						<i
+							v-if="item.items"
+							:class="[{ '-rotate-180': active }, 'pi pi-angle-down ml-auto p-panelmenu-submenu-icon duration-200']"></i>
 					</NuxtLink>
 				</template>
 			</PanelMenu>

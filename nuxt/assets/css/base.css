@@ -17,7 +17,7 @@
 @layer tailwind-utilities {
 	@tailwind utilities;
 
-	.router-link-exact-active {
+	.router-link-exact-active > * {
 		@apply text-primary;
 	}
 
