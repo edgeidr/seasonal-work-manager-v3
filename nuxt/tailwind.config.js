@@ -10,7 +10,7 @@ module.exports = {
 				mobile: { max: "480px" },
 			},
 			fontSize: {
-				"2xs": ["11px", "1rem"],
+				"2xs": ["0.7rem", "1rem"],
 			},
 		},
 	},
