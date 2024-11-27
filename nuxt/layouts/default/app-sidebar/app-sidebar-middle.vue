@@ -1,24 +1,27 @@
 <template>
-	<div class="flex-1 p-4 pl-">
-		<PanelMenu
-			:model="items"
-			:pt="{
-				panel: { class: 'border-0 p-0 bg-transparent' },
-				item: { class: 'border-l' },
-				rootList: { class: 'pl-5' },
-			}">
-			<template #item="{ item }">
-				<div v-if="item.groupLabel" class="mt-4 px-2">
-					<span class="text-xs uppercase font-medium">{{ item.label }}</span>
-				</div>
+	<div class="flex-1 overflow-auto px-4">
+		<ScrollPanel class="h-full" :pt="{ barY: { class: 'translate-x-3 bg-surface-200' } }">
+			<PanelMenu
+				class="py-4"
+				:model="items"
+				:pt="{
+					panel: { class: 'border-0 p-0 bg-transparent' },
+					item: { class: 'border-l' },
+					rootList: { class: 'pl-5' },
+				}">
+				<template #item="{ item }">
+					<div v-if="item.groupLabel" class="mt-4 px-2">
+						<span class="text-xs uppercase font-medium">{{ item.label }}</span>
+					</div>
 
-				<NuxtLink v-else :to="item.route" class="flex gap-2 items-center px-3 py-2 text-sm">
-					<i :class="item.icon"></i>
-					<span>{{ item.label }}</span>
-					<i v-if="item.items" :class="['pi pi-angle-down', 'ml-auto']"></i>
-				</NuxtLink>
-			</template>
-		</PanelMenu>
+					<NuxtLink v-else :to="item.route" class="flex gap-2 items-center px-3 py-2 text-sm">
+						<i :class="item.icon"></i>
+						<span>{{ item.label }}</span>
+						<i v-if="item.items" :class="['pi pi-angle-down', 'ml-auto']"></i>
+					</NuxtLink>
+				</template>
+			</PanelMenu>
+		</ScrollPanel>
 	</div>
 </template>
 
