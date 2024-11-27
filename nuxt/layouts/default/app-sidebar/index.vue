@@ -1,9 +1,9 @@
 <template>
-	<div class="w-64 h-full rounded-2xl bg-surface-50 flex flex-col">
+	<aside class="w-64 h-full rounded-2xl bg-surface-50 flex flex-col">
 		<AppSidebarTop />
 		<AppSidebarMiddle />
 		<AppSidebarBottom />
-	</div>
+	</aside>
 </template>
 
 <script setup lang="ts">
