@@ -13,3 +13,15 @@
 		@apply text-3xl tablet:text-lg mobile:text-base;
 	}
 }
+
+@layer tailwind-utilities {
+	@tailwind utilities;
+
+	.router-link-exact-active {
+		@apply text-primary;
+	}
+
+	.p-panelmenu-item:has(.router-link-exact-active) {
+		@apply border-primary;
+	}
+}
