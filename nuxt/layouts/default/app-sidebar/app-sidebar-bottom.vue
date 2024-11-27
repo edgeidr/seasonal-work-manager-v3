@@ -9,7 +9,7 @@
 						<Avatar :label="userInitial" class="font-semibold" />
 						<div>
 							<span class="block truncate text-sm font-medium">{{ user.name }} </span>
-							<span class="block truncate text-xs font-light">{{ user.role }} </span>
+							<span class="block truncate text-2xs font-light">{{ user.role }} </span>
 						</div>
 						<i class="pi pi-ellipsis-v text-xs ml-auto"></i>
 					</span>

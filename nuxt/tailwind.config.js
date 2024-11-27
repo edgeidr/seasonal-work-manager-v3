@@ -9,6 +9,9 @@ module.exports = {
 				tablet: { max: "768px" },
 				mobile: { max: "480px" },
 			},
+			fontSize: {
+				"2xs": ["11px", "1rem"],
+			},
 		},
 	},
 	plugins: [
