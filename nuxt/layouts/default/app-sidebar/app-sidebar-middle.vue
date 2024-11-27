@@ -2,7 +2,7 @@
 	<div class="flex-1 overflow-auto px-4">
 		<ScrollPanel class="h-full" :pt="{ barY: { class: 'translate-x-3 bg-surface-200' } }">
 			<PanelMenu
-				class="py-4"
+				class="py-4 gap-0"
 				:model="items"
 				:pt="{
 					panel: { class: 'border-0 p-0 bg-transparent' },
@@ -14,7 +14,7 @@
 						<span class="text-xs uppercase font-medium">{{ item.label }}</span>
 					</div>
 
-					<NuxtLink v-else :to="item.route" :class="[root ? 'p-panelmenu-header-link' : 'p-panelmenu-item-link', 'text-sm']">
+					<NuxtLink v-else :to="item.route" :class="[root ? 'p-panelmenu-header-link py-3' : 'p-panelmenu-item-link py-2.5', 'text-sm']">
 						<i :class="[root ? 'p-panelmenu-header-icon' : 'p-panelmenu-item-icon', item.icon]"></i>
 						<span :class="[root ? 'p-panelmenu-header-label' : 'p-panelmenu-item-label', 'truncate']">{{ item.label }}</span>
 						<i
