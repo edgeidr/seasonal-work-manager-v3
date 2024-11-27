@@ -4,10 +4,13 @@
 
 		<div class="p-4">
 			<Button type="button" severity="secondary" variant="text" @click="menu?.toggle" aria-haspopup="true" class="w-full rounded-md">
-				<div class="grid flex-1 text-left text-sm leading-tight">
-					<span class="truncate font-semibold flex items-center gap-2">
-						<Avatar :label="userInitial" />
-						<span class="truncate">{{ user.name }} </span>
+				<div class="grid flex-1 text-left leading-tight">
+					<span class="truncate flex items-center gap-2">
+						<Avatar :label="userInitial" class="font-semibold" />
+						<div>
+							<span class="block truncate text-sm font-medium">{{ user.name }} </span>
+							<span class="block truncate text-xs font-light">{{ user.role }} </span>
+						</div>
 						<i class="pi pi-ellipsis-v text-xs ml-auto"></i>
 					</span>
 				</div>
@@ -35,6 +38,7 @@
 		firstName: "Ian",
 		lastName: "Del Rosario",
 		email: "edge.idr@gmail.com",
+		role: "Superadmin",
 		avatar: "/avatars/shadcn.jpg",
 	};
 
