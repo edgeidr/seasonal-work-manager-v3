@@ -1,7 +1,7 @@
 <template>
 	<div class="p-6 h-screen">
 		<div class="h-full">
-			<div class="flex gap-6">
+			<div class="flex gap-6 h-full">
 				<AppSidebar />
 
 				<div class="flex-1">
