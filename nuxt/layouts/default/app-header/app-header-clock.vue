@@ -7,6 +7,7 @@
 		severity="secondary"
 		aria-haspopup="true"
 		aria-controls="overlay_menu"
+		class="font-[Roboto]"
 		rounded />
 
 	<Popover ref="clockMenu">
@@ -14,37 +15,19 @@
 			<div>
 				<div class="mb-2 flex items-center">
 					<span class="px-3 font-medium flex-1">Today</span>
-					<Button
-						@mousedown.left="smash = true"
-						@mouseup.left="smash = false"
-						@mouseenter="ready = true"
-						@mouseleave="ready = false"
-						@click.right.prevent="(flip = !flip), (smash = false)"
-						:class="[{ 'cursor-none': ready }, 'hover:bg-transparent']"
-						variant="text"
-						severity="secondary"
-						size="small"
-						style="--p-ripple-background: transparent">
-						<div :class="[{ '-scale-x-[1]': flip }, 'duration-200']">
-							<i
-								:class="[
-									{ 'rotate-45 translate-y-1 translate-x-1': smash },
-									{ '-rotate-45': ready },
-									'pi pi-hammer duration-200 origin-bottom-left',
-								]" />
-						</div>
-					</Button>
+					<Button variant="text" severity="secondary" size="small" icon="pi pi-ellipsis-v" @click="moreMenu?.toggle" />
+					<Menu ref="moreMenu" :model="moreMenuItems" :popup="true" :pt="moreMenuPassThrough" />
 				</div>
 
 				<div class="text-sm">
 					<div class="flex px-3 py-2">
 						<span class="text-surface-500">Clock In:</span>
-						<span class="text-surface-700 font-medium ml-auto">06:45 PM</span>
+						<span class="text-surface-700 font-medium ml-auto font-[Roboto]">06:45 PM</span>
 					</div>
 
 					<div class="flex px-3 py-2">
 						<span class="text-surface-500">Clock Out:</span>
-						<span class="text-surface-700 font-medium ml-auto">03:01 AM</span>
+						<span class="text-surface-700 font-medium ml-auto font-[Roboto]">03:01 AM</span>
 					</div>
 				</div>
 			</div>
@@ -60,18 +43,42 @@
 					v-model="clockState"
 					:pt="{
 						root: ({ context }) => ({
-							class: [context.active ? 'bg-red-100' : 'bg-green-100', 'before:hidden *:*:text-surface-500 *:*:hover:text-surface-700'],
+							class: [
+								context.active ? 'hover:bg-red-100' : 'hover:bg-green-100',
+								'before:hidden *:*:text-surface-500 *:*:hover:text-surface-700',
+							],
 						}),
 					}" />
 			</div>
 		</div>
 	</Popover>
+
+	<AppHeaderClockLogsDialog v-model:visible="dialogVisible" />
 </template>
 
 <script setup lang="ts">
+	import AppHeaderClockLogsDialog from "./app-header-clock-logs-dialog.vue";
+
 	const clockMenu = ref();
 	const clockState = ref(false);
-	const smash = ref(false);
-	const flip = ref(true);
-	const ready = ref(false);
+	const moreMenu = ref();
+	const dialogVisible = ref(false);
+
+	const moreMenuPassThrough = {
+		submenuLabel: { class: "text-xs" },
+		itemLabel: { class: "text-sm truncate" },
+	};
+
+	const moreMenuItems = [
+		{
+			label: "Work Schedule",
+			icon: "pi pi-calendar",
+			command: () => (dialogVisible.value = true),
+		},
+		{
+			label: "Activity Logs",
+			icon: "pi pi-history",
+			command: () => (dialogVisible.value = true),
+		},
+	];
 </script>
