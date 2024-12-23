@@ -53,16 +53,19 @@
 		</div>
 	</Popover>
 
-	<AppHeaderClockLogsDialog v-model:visible="dialogVisible" />
+	<AppHeaderClockLogsDialog v-model:visible="logsDialogVisible" />
+	<AppHeaderClockScheduleDialog v-model:visible="scheduleDialogVisible" />
 </template>
 
 <script setup lang="ts">
 	import AppHeaderClockLogsDialog from "./app-header-clock-logs-dialog.vue";
+	import AppHeaderClockScheduleDialog from "./app-header-clock-schedule-dialog.vue";
 
 	const clockMenu = ref();
 	const clockState = ref(false);
 	const moreMenu = ref();
-	const dialogVisible = ref(false);
+	const logsDialogVisible = ref(false);
+	const scheduleDialogVisible = ref(false);
 
 	const moreMenuPassThrough = {
 		submenuLabel: { class: "text-xs" },
@@ -73,12 +76,12 @@
 		{
 			label: "Work Schedule",
 			icon: "pi pi-calendar",
-			command: () => (dialogVisible.value = true),
+			command: () => (scheduleDialogVisible.value = true),
 		},
 		{
 			label: "Activity Logs",
 			icon: "pi pi-history",
-			command: () => (dialogVisible.value = true),
+			command: () => (logsDialogVisible.value = true),
 		},
 	];
 </script>

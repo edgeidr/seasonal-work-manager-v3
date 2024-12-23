@@ -1,5 +1,5 @@
 <template>
-	<Dialog :visible="visible" @update:visible="$emit('update:visible', $event)" header="Today's Activity Logs" class="w-96 min-h-40" modal>
+	<Dialog :visible="visible" @update:visible="$emit('update:visible', $event)" header="Today's Work Schedule" class="w-96 min-h-40" modal>
 		<Timeline :value="events" :pt="timelinePassThrough">
 			<template #marker>
 				<div class="size-2 rounded-full border border-surface-300 bg-surface-100 my-1.5"></div>
