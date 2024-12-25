@@ -1,12 +1,15 @@
 <template>
 	<div class="p-6 h-screen">
 		<div class="h-full">
-			<div class="flex gap-6 h-full">
+			<div class="flex gap-4 h-full">
 				<AppSidebar />
 
-				<div class="flex-1">
+				<div class="flex flex-col flex-1">
 					<AppHeader />
-					<slot />
+
+					<div class="flex-1 px-3 py-2">
+						<slot />
+					</div>
 				</div>
 			</div>
 		</div>
