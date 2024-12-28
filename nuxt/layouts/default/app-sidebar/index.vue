@@ -1,9 +1,11 @@
 <template>
-	<aside class="w-64 h-full rounded-2xl bg-surface-50 flex flex-col">
-		<AppSidebarTop />
-		<AppSidebarMiddle />
-		<AppSidebarBottom />
-	</aside>
+	<div class="sticky top-0 left-0 z-50 h-screen py-6 pl-6 pr-3">
+		<aside class="w-64 rounded-2xl bg-surface-50 flex flex-col h-full">
+			<AppSidebarTop />
+			<AppSidebarMiddle />
+			<AppSidebarBottom />
+		</aside>
+	</div>
 </template>
 
 <script setup lang="ts">

@@ -1,16 +1,16 @@
 <template>
-	<div class="p-6 h-screen">
-		<div class="h-full">
-			<div class="flex gap-4 h-full">
-				<AppSidebar />
+	<div class="min-h-screen">
+		<div class="h-full flex">
+			<AppSidebar />
 
-				<div class="flex flex-col flex-1">
-					<AppHeader />
+			<div>
+				<AppHeader />
 
-					<div class="flex-1 px-3 py-2">
+				<main>
+					<div class="flex-1 pl-3 pr-6 pt-3 pb-6">
 						<slot />
 					</div>
-				</div>
+				</main>
 			</div>
 		</div>
 	</div>
