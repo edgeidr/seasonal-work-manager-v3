@@ -1,8 +1,6 @@
 <template>
-	<div class="flex">
-		<div class="flex-1">
-			<h2 class="px-3">{{ formattedDate }}</h2>
-		</div>
+	<div class="flex gap-6">
+		<MyStuffSchedulesTimegrid />
 		<MyStuffSchedulesCalendar />
 	</div>
 </template>

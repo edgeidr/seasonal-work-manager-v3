@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded-2xl bg-surface-50 flex flex-col">
+	<div class="rounded-2xl bg-surface-50 flex flex-col h-fit sticky">
 		<div class="p-4">
 			<DatePicker
 				v-model="date"
