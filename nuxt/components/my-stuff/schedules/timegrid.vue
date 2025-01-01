@@ -11,6 +11,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import type { CalendarApi, CalendarOptions } from "@fullcalendar/core";
 
 const calendarRef = ref();
+const headerHeight = useState<number>("headerHeight");
+const topSpacing = computed(() => headerHeight.value);
 const calendarApi = computed<CalendarApi>(() => calendarRef.value?.getApi());
 
 useState("calendarApi", () => calendarApi);
@@ -41,4 +43,17 @@ const calendarOptions = computed<CalendarOptions>(() => {
     initialEvents: [{ title: "nice event", start: new Date() }],
   };
 });
+
+watch(
+  () => topSpacing.value,
+  (newValue) => {
+    const FC_HEADERS = <NodeListOf<HTMLElement>>(
+      document?.querySelectorAll(".fc .fc-scrollgrid-section-sticky > *")
+    );
+
+    for (const FC_HEADER of FC_HEADERS) {
+      FC_HEADER.style.top = `${newValue}px`;
+    }
+  },
+);
 </script>

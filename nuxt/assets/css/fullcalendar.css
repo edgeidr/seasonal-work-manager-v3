@@ -37,13 +37,16 @@
   @apply text-xs font-normal text-surface-500;
 }
 
+.fc .fc-timegrid-axis,
+.fc .fc-col-header-cell {
+  @apply border-b bg-surface-0;
+}
+
 .fc .fc-timegrid-slot {
   @apply font-[Roboto] text-xs font-light;
 }
 
 .fc .fc-scrollgrid,
-.fc .fc-col-header-cell,
-.fc .fc-timegrid-axis,
 .fc .fc-timegrid-slot-minor,
 .fc .fc-timegrid-slot-label,
 .fc .fc-scrollgrid-section > td,
@@ -51,6 +54,8 @@
   @apply border-none;
 }
 
+.fc .fc-col-header-cell,
+.fc .fc-timegrid-axis,
 .fc .fc-timegrid-slot-lane,
 .fc .fc-timegrid-col {
   @apply border-x-0;
@@ -68,10 +73,6 @@
   @apply -translate-y-1/2 text-surface-500;
 }
 
-.fc .fc-timegrid-slots {
-  @apply border-y;
-}
-
 .fc .fc-timegrid-now-indicator-arrow {
   @apply hidden;
 }
@@ -86,4 +87,8 @@
 
 .fc .fc-event-main-frame {
   @apply px-1;
+}
+
+.fc .fc-timegrid-slots {
+  @apply border-b;
 }
