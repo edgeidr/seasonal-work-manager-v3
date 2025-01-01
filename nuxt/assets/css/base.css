@@ -1,27 +1,29 @@
+@import "fullcalendar";
+
 @layer tailwind-base {
-	@tailwind base;
+  @tailwind base;
 
-	body {
-		@apply font-[Poppins];
-	}
+  body {
+    @apply font-[Poppins];
+  }
 
-	h1 {
-		@apply text-6xl tablet:text-5xl mobile:text-4xl;
-	}
+  h1 {
+    @apply text-6xl tablet:text-5xl mobile:text-4xl;
+  }
 
-	h2 {
-		@apply text-3xl tablet:text-lg mobile:text-base;
-	}
+  h2 {
+    @apply text-3xl tablet:text-lg mobile:text-base;
+  }
 }
 
 @layer tailwind-utilities {
-	@tailwind utilities;
+  @tailwind utilities;
 
-	.router-link-exact-active > * {
-		@apply text-primary;
-	}
+  .router-link-exact-active > * {
+    @apply text-primary;
+  }
 
-	.p-panelmenu-item:has(.router-link-exact-active) {
-		@apply border-primary;
-	}
+  .p-panelmenu-item:has(.router-link-exact-active) {
+    @apply border-primary;
+  }
 }
