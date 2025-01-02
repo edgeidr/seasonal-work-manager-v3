@@ -30,7 +30,7 @@
   --fc-bg-event-opacity: 0.1;
   /* --fc-highlight-color: rgba(188, 232, 241, 0.3); */
   --fc-today-bg-color: transparent;
-  /* --fc-now-indicator-color: red; */
+  --fc-now-indicator-color: #ef4444;
 }
 
 .fc .fc-col-header-cell {
@@ -39,7 +39,7 @@
 
 .fc .fc-timegrid-axis,
 .fc .fc-col-header-cell {
-  @apply border-b bg-surface-0;
+  @apply bg-surface-0;
 }
 
 .fc .fc-timegrid-slot {
