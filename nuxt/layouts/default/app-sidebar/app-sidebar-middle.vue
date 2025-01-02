@@ -32,20 +32,7 @@ const items = computed(() => {
         {
             label: "Schedules",
             icon: "pi pi-calendar",
-            items: [
-                {
-                    label: "Channel One",
-                    route: { name: "schedules-slug", params: { slug: "channel-one" } },
-                },
-                {
-                    label: "Channel Two",
-                    route: { name: "schedules-slug", params: { slug: "channel-two" } },
-                },
-                {
-                    label: "Channel Three",
-                    route: { name: "schedules-slug", params: { slug: "channel-three" } },
-                },
-            ],
+            route: { name: "schedules" },
         },
         {
             label: "My Stuff",
