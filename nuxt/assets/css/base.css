@@ -26,4 +26,20 @@
   .p-panelmenu-item:has(.router-link-exact-active) {
     @apply border-primary;
   }
+
+  .p-datepicker-week:has(.p-datepicker-day-selected) .p-datepicker-day-cell {
+    @apply relative before:absolute before:inset-0 before:bg-primary-100;
+
+    &:first-child {
+      @apply before:rounded-l-full;
+    }
+
+    &:last-child {
+      @apply before:rounded-r-full;
+    }
+
+    .p-datepicker-day:not(.p-datepicker-day-selected) {
+      @apply bg-primary-100;
+    }
+  }
 }
