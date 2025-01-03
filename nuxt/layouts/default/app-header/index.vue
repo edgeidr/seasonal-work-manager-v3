@@ -1,6 +1,6 @@
 <template>
     <header ref="headerRef" class="sticky top-0 z-40">
-        <div class="bg-surface-0 pb-3 pl-3 pr-6 pt-6">
+        <div class="bg-surface-0 px-0 pb-3 pl-0 pr-6 pt-6">
             <Menubar :pt="{ root: { class: 'border-none p-0' } }">
                 <template #start>
                     <AppHeaderClock />
