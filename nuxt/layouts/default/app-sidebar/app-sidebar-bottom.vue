@@ -1,17 +1,17 @@
 <template>
 	<div>
-		<div class="bg-surface-100 h-[2px] mx-4"></div>
+		<div class="mx-4 h-[2px] bg-surface-100"></div>
 
 		<div class="p-4">
 			<Button type="button" severity="secondary" variant="text" @click="menu?.toggle" aria-haspopup="true" class="w-full rounded-md">
 				<div class="grid flex-1 text-left leading-tight">
-					<span class="truncate flex items-center gap-2">
+					<span class="flex items-center gap-2 truncate">
 						<Avatar :label="userInitial" class="font-semibold" />
 						<div>
 							<span class="block truncate text-sm font-medium">{{ user.name }} </span>
 							<span class="block truncate text-2xs font-light">{{ user.role }} </span>
 						</div>
-						<i class="pi pi-ellipsis-v text-xs ml-auto"></i>
+						<i class="pi pi-ellipsis-v ml-auto text-xs"></i>
 					</span>
 				</div>
 			</Button>
@@ -45,14 +45,19 @@
 	const items = computed(() => {
 		return [
 			{
+				label: "Activity Log",
+				icon: "pi pi-history",
+				command: () => navigateTo({ name: "user-activity-log" }),
+			},
+			{
 				label: "Account",
 				icon: "pi pi-user",
-				command: () => navigateTo({ name: "settings-account" }),
+				command: () => navigateTo({ name: "user-account" }),
 			},
 			{
 				label: "Notifications",
 				icon: "pi pi-bell",
-				command: () => navigateTo({ name: "settings-notifications" }),
+				command: () => navigateTo({ name: "user-notifications" }),
 			},
 			{
 				separator: true,

@@ -11,10 +11,10 @@
 		rounded />
 
 	<Popover ref="clockMenu">
-		<div class="flex flex-col gap-3 w-52">
+		<div class="flex w-52 flex-col gap-3">
 			<div>
 				<div class="mb-2 flex items-center">
-					<span class="px-3 font-medium flex-1">Today</span>
+					<span class="flex-1 px-3 font-medium">Today</span>
 					<Button variant="text" severity="secondary" size="small" icon="pi pi-ellipsis-v" @click="moreMenu?.toggle" />
 					<Menu ref="moreMenu" :model="moreMenuItems" :popup="true" :pt="moreMenuPassThrough" />
 				</div>
@@ -22,12 +22,12 @@
 				<div class="text-sm">
 					<div class="flex px-3 py-2">
 						<span class="text-surface-500">Clock In:</span>
-						<span class="text-surface-700 font-medium ml-auto font-[Roboto]">06:45 PM</span>
+						<span class="ml-auto font-[Roboto] font-medium text-surface-700">06:45 PM</span>
 					</div>
 
 					<div class="flex px-3 py-2">
 						<span class="text-surface-500">Clock Out:</span>
-						<span class="text-surface-700 font-medium ml-auto font-[Roboto]">03:01 AM</span>
+						<span class="ml-auto font-[Roboto] font-medium text-surface-700">03:01 AM</span>
 					</div>
 				</div>
 			</div>
@@ -52,36 +52,30 @@
 			</div>
 		</div>
 	</Popover>
-
-	<AppHeaderClockLogsDialog v-model:visible="logsDialogVisible" />
-	<AppHeaderClockScheduleDialog v-model:visible="scheduleDialogVisible" />
 </template>
 
 <script setup lang="ts">
-	import AppHeaderClockLogsDialog from "./app-header-clock-logs-dialog.vue";
-	import AppHeaderClockScheduleDialog from "./app-header-clock-schedule-dialog.vue";
+	import type { MenuItem } from "primevue/menuitem";
 
 	const clockMenu = ref();
 	const clockState = ref(false);
 	const moreMenu = ref();
-	const logsDialogVisible = ref(false);
-	const scheduleDialogVisible = ref(false);
 
 	const moreMenuPassThrough = {
 		submenuLabel: { class: "text-xs" },
 		itemLabel: { class: "text-sm truncate" },
 	};
 
-	const moreMenuItems = [
+	const moreMenuItems = <MenuItem[]>[
 		{
 			label: "Work Schedule",
 			icon: "pi pi-calendar",
-			command: () => (scheduleDialogVisible.value = true),
+			command: () => navigateTo({ name: "my-stuff-schedules" }),
 		},
 		{
-			label: "Activity Logs",
+			label: "Activity Log",
 			icon: "pi pi-history",
-			command: () => (logsDialogVisible.value = true),
+			command: () => navigateTo({ name: "user-activity-log" }),
 		},
 	];
 </script>
