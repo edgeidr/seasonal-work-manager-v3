@@ -33,22 +33,14 @@
 			</div>
 
 			<div>
-				<ToggleButton
-					on-label="Clock Out"
-					on-icon="pi pi-sign-out"
-					off-label="Clock In"
-					off-icon="pi pi-sign-in"
-					class="w-full"
-					@click="console.log(clockState)"
-					v-model="clockState"
-					:pt="{
-						root: ({ context }) => ({
-							class: [
-								context.active ? 'hover:bg-red-100' : 'hover:bg-green-100',
-								'before:hidden *:*:text-surface-500 *:*:hover:text-surface-700',
-							],
-						}),
-					}" />
+				<Button
+					:label="clockActiveState ? 'Clock Out' : 'Clock In'"
+					:icon="clockActiveState ? 'pi pi-sign-out' : 'pi pi-sign-in'"
+					severity="secondary"
+					:class="[clockActiveState ? 'hover:border-red-100 hover:bg-red-100' : 'hover:border-green-100 hover:bg-green-100']"
+					@click="showConfirm"
+					size="small"
+					fluid />
 			</div>
 		</div>
 	</Popover>
@@ -58,8 +50,9 @@
 	import type { MenuItem } from "primevue/menuitem";
 
 	const clockMenu = ref();
-	const clockState = ref(false);
+	const clockActiveState = ref(false);
 	const moreMenu = ref();
+	const confirm = useConfirm();
 
 	const moreMenuItems = <MenuItem[]>[
 		{
@@ -73,4 +66,26 @@
 			command: () => navigateTo({ name: "user-activity-log" }),
 		},
 	];
+
+	const showConfirm = () => {
+		const message = "Do you want to continue?";
+
+		confirm.require({
+			message: message,
+			icon: "pi pi-exclamation-triangle",
+			rejectProps: {
+				label: "Cancel",
+				severity: "secondary",
+				outlined: true,
+			},
+			acceptProps: {
+				label: "Confirm",
+				severity: clockActiveState.value ? "danger" : "success",
+			},
+			accept: () => {
+				clockActiveState.value = !clockActiveState.value;
+			},
+			reject: () => {},
+		});
+	};
 </script>

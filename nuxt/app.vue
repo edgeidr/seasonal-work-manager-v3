@@ -4,4 +4,6 @@
 			<NuxtPage />
 		</NuxtLayout>
 	</ScrollPanel>
+
+	<ConfirmPopup></ConfirmPopup>
 </template>

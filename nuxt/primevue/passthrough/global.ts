@@ -27,4 +27,10 @@ export default <PrimeVuePTOptions>{
 		event: { class: "min-h-12" },
 		eventConnector: { class: "w-px" },
 	},
+	confirmpopup: {
+		message: { class: "text-sm" },
+		icon: { class: "size-4 text-base" },
+		pcAcceptButton: { icon: { class: "text-xs" }, label: { class: "text-xs" } },
+		pcRejectButton: { icon: { class: "text-xs" }, label: { class: "text-xs" } },
+	},
 };

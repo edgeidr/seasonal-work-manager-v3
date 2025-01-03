@@ -1,5 +1,5 @@
 @layer tailwind-utilities {
-	.p-togglebutton {
+	.p-selectbutton .p-togglebutton {
 		@apply w-full;
 	}
 }
