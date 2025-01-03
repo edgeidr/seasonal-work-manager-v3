@@ -1,5 +1,7 @@
 <template>
-	<NuxtLayout>
-		<NuxtPage />
-	</NuxtLayout>
+	<ScrollPanel class="h-screen">
+		<NuxtLayout>
+			<NuxtPage />
+		</NuxtLayout>
+	</ScrollPanel>
 </template>

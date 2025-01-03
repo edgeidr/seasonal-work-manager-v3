@@ -1,6 +1,6 @@
 <template>
-	<div class="flex-1 overflow-auto px-4">
-		<ScrollPanel class="h-full" :pt="{ barY: { class: 'translate-x-3 bg-surface-200' } }">
+	<ScrollPanel class="flex-1 overflow-hidden">
+		<div class="h-full px-4">
 			<PanelMenu
 				class="gap-0 py-4"
 				:model="menuItems"
@@ -21,8 +21,8 @@
 					</NuxtLink>
 				</template>
 			</PanelMenu>
-		</ScrollPanel>
-	</div>
+		</div>
+	</ScrollPanel>
 </template>
 
 <script setup lang="ts">
