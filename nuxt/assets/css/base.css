@@ -1,8 +1,7 @@
 @import "fullcalendar";
+@import "primevue";
 
 @layer tailwind-base {
-	@tailwind base;
-
 	body {
 		@apply font-[Poppins];
 	}
@@ -13,45 +12,5 @@
 
 	h2 {
 		@apply text-2xl tablet:text-lg mobile:text-base;
-	}
-}
-
-@layer tailwind-utilities {
-	@tailwind utilities;
-
-	.p-panelmenu-item > * {
-		@apply text-surface-500;
-	}
-
-	.p-panelmenu-item:has(.router-link-exact-active) {
-		@apply border-surface-700;
-
-		> * {
-			@apply text-surface-700;
-		}
-	}
-
-	.p-panelmenu-panel:has(.router-link-exact-active) .p-panelmenu-header-link > * {
-		@apply text-primary;
-	}
-
-	.p-datepicker-week:has(.p-datepicker-day-selected) .p-datepicker-day-cell {
-		@apply relative before:absolute before:inset-0 before:bg-primary-100;
-
-		&:first-child {
-			@apply before:rounded-l-full;
-		}
-
-		&:last-child {
-			@apply before:rounded-r-full;
-		}
-
-		.p-datepicker-day:not(.p-datepicker-day-selected) {
-			@apply bg-primary-100;
-		}
-	}
-
-	.p-togglebutton {
-		@apply w-full;
 	}
 }

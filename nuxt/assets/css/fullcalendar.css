@@ -1,49 +1,49 @@
 :root {
-  --fc-small-font-size: 0.85em;
-  --fc-page-bg-color: transparent;
-  /* --fc-neutral-bg-color: rgba(208, 208, 208, 0.3); */
-  /* --fc-neutral-text-color: #808080; */
-  /* --fc-border-color: transparent; */
+	--fc-small-font-size: 0.85em;
+	--fc-page-bg-color: transparent;
+	/* --fc-neutral-bg-color: rgba(208, 208, 208, 0.3); */
+	/* --fc-neutral-text-color: #808080; */
+	/* --fc-border-color: transparent; */
 
-  /* --fc-button-text-color: #fff; */
-  /* --fc-button-bg-color: #2C3E50; */
-  /* --fc-button-border-color: #2C3E50; */
-  /* --fc-button-hover-bg-color: #1e2b37; */
-  /* --fc-button-hover-border-color: #1a252f; */
-  /* --fc-button-active-bg-color: #1a252f; */
-  /* --fc-button-active-border-color: #151e27; */
+	/* --fc-button-text-color: #fff; */
+	/* --fc-button-bg-color: #2C3E50; */
+	/* --fc-button-border-color: #2C3E50; */
+	/* --fc-button-hover-bg-color: #1e2b37; */
+	/* --fc-button-hover-border-color: #1a252f; */
+	/* --fc-button-active-bg-color: #1a252f; */
+	/* --fc-button-active-border-color: #151e27; */
 
-  --fc-event-bg-color: #d1fae5;
-  --fc-event-border-color: #a7f3d0;
-  --fc-event-text-color: var(--p-text-color);
-  /* --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25); */
+	--fc-event-bg-color: #d1fae5;
+	--fc-event-border-color: #a7f3d0;
+	--fc-event-text-color: var(--p-text-color);
+	/* --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25); */
 
-  /* --fc-more-link-bg-color: #d0d0d0; */
-  /* --fc-more-link-text-color: inherit; */
+	/* --fc-more-link-bg-color: #d0d0d0; */
+	/* --fc-more-link-text-color: inherit; */
 
-  /* --fc-event-resizer-thickness: 8px; */
-  /* --fc-event-resizer-dot-total-width: 8px; */
-  /* --fc-event-resizer-dot-border-width: 1px; */
+	/* --fc-event-resizer-thickness: 8px; */
+	/* --fc-event-resizer-dot-total-width: 8px; */
+	/* --fc-event-resizer-dot-border-width: 1px; */
 
-  /* --fc-non-business-color: rgba(215, 215, 215, 0.3); */
-  /* --fc-bg-event-color: rgb(143, 223, 130); */
-  --fc-bg-event-opacity: 0.1;
-  /* --fc-highlight-color: rgba(188, 232, 241, 0.3); */
-  --fc-today-bg-color: transparent;
-  --fc-now-indicator-color: #ef4444;
+	/* --fc-non-business-color: rgba(215, 215, 215, 0.3); */
+	/* --fc-bg-event-color: rgb(143, 223, 130); */
+	--fc-bg-event-opacity: 0.1;
+	/* --fc-highlight-color: rgba(188, 232, 241, 0.3); */
+	--fc-today-bg-color: transparent;
+	--fc-now-indicator-color: #ef4444;
 }
 
 .fc .fc-col-header-cell {
-  @apply text-xs font-normal text-surface-500;
+	@apply text-xs font-normal text-surface-500;
 }
 
 .fc .fc-timegrid-axis,
 .fc .fc-col-header-cell {
-  @apply bg-surface-0;
+	@apply bg-surface-0;
 }
 
 .fc .fc-timegrid-slot {
-  @apply font-[Roboto] text-xs font-light;
+	@apply font-[Roboto] text-xs font-light;
 }
 
 .fc .fc-scrollgrid,
@@ -51,44 +51,44 @@
 .fc .fc-timegrid-slot-label,
 .fc .fc-scrollgrid-section > td,
 .fc .fc-scrollgrid-section > th {
-  @apply border-none;
+	@apply border-none;
 }
 
 .fc .fc-col-header-cell,
 .fc .fc-timegrid-axis,
 .fc .fc-timegrid-slot-lane,
 .fc .fc-timegrid-col {
-  @apply border-x-0;
+	@apply border-x-0;
 }
 
 .fc .fc-timegrid-col.fc-day {
-  @apply border-l-0 border-r;
+	@apply border-l-0 border-r;
 }
 
 .fc .fc-timegrid-slots tbody > tr:first-child > .fc-timegrid-slot-label {
-  @apply hidden;
+	@apply hidden;
 }
 
 .fc .fc-timegrid-slot-label-cushion {
-  @apply -translate-y-1/2 text-surface-500;
+	@apply -translate-y-1/2 text-surface-500;
 }
 
 .fc .fc-timegrid-now-indicator-arrow {
-  @apply hidden;
+	@apply hidden;
 }
 
 .fc .fc-timegrid-now-indicator-container {
-  @apply overflow-visible;
+	@apply overflow-visible;
 }
 
 .fc .fc-timegrid-now-indicator-line {
-  @apply relative left-0 before:absolute before:size-2 before:-translate-x-1 before:-translate-y-1/2 before:rounded-full before:bg-red-500;
+	@apply relative left-0 before:absolute before:size-2 before:-translate-x-1 before:-translate-y-1/2 before:rounded-full before:bg-red-500;
 }
 
 .fc .fc-event-main-frame {
-  @apply px-1;
+	@apply px-1;
 }
 
 .fc .fc-timegrid-slots {
-  @apply border-b;
+	@apply border-b;
 }

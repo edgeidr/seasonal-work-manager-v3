@@ -1,0 +1,17 @@
+@layer tailwind-utilities {
+	.p-panelmenu-item > * {
+		@apply text-surface-500;
+	}
+
+	.p-panelmenu-item:has(.router-link-exact-active) {
+		@apply border-surface-700;
+
+		> * {
+			@apply text-surface-700;
+		}
+	}
+
+	.p-panelmenu-panel:has(.router-link-exact-active) .p-panelmenu-header-link > * {
+		@apply text-primary;
+	}
+}
