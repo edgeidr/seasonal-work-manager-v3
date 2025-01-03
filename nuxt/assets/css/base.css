@@ -50,4 +50,8 @@
 			@apply bg-primary-100;
 		}
 	}
+
+	.p-togglebutton {
+		@apply w-full;
+	}
 }

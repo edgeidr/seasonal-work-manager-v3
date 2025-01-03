@@ -1,24 +1,13 @@
 <template>
-	<div class="sticky bottom-0 h-fit w-72" :style="{ top: `${topSpacing}px` }">
-		<div class="mb-3 flex gap-2 rounded-md px-3">
-			<Button
-				size="small"
-				icon="pi pi-clock"
-				severity="secondary"
-				:variant="calendarView == 'timeGridDay' ? undefined : 'text'"
-				label="Day"
-				@click="calendarView = 'timeGridDay'"
-				fluid />
-
-			<Button
-				size="small"
-				icon="pi pi-calendar"
-				severity="secondary"
-				:variant="calendarView == 'timeGridWeek' ? undefined : 'text'"
-				label="Week"
-				@click="calendarView = 'timeGridWeek'"
-				fluid />
-		</div>
+	<div class="sticky bottom-0 h-fit w-80" :style="{ top: `${topSpacing}px` }">
+		<SelectButton ref="selectViewRef" option v-model="calendarView" :options="calendarViews" option-label="label" option-value="value" class="w-full px-6">
+			<template #option="{ option }">
+				<div class="flex w-min items-center gap-2" :data-value="option.value">
+					<i :class="option.icon" class="text-sm"></i>
+					<span class="text-sm">{{ option.label }}</span>
+				</div>
+			</template>
+		</SelectButton>
 
 		<div class="rounded-2xl p-0">
 			<DatePicker
@@ -26,7 +15,7 @@
 				v-model="selectedDate"
 				inline
 				:pt="{
-					panel: { class: 'border-none bg-transparent p-0' },
+					panel: { class: 'border-none bg-transparent' },
 					header: { class: 'border-none bg-transparent' },
 					tableBodyRow: {
 						class: [
@@ -43,10 +32,23 @@
 <script setup lang="ts">
 	import type { CalendarApi } from "@fullcalendar/core";
 
+	const selectViewRef = ref<ComponentPublicInstance>();
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
 	const headerHeight = useState<number>("headerHeight");
 	const calendarApi = useState<CalendarApi>("calendarApi");
 	const calendarView = ref<string>("timeGridDay");
+	const calendarViews = [
+		{
+			value: "timeGridDay",
+			label: "Day",
+			icon: "pi pi-clock",
+		},
+		{
+			value: "timeGridWeek",
+			label: "Week",
+			icon: "pi pi-calendar",
+		},
+	];
 
 	const topSpacing = computed(() => headerHeight.value + 12);
 
@@ -61,6 +63,14 @@
 
 	watch(
 		() => calendarView.value,
-		() => changeView(),
+		(newValue, oldValue) => {
+			if (!newValue) {
+				const BTN_VIEW = <HTMLElement>selectViewRef.value?.$el.querySelector(`.p-togglebutton:has([data-value="${oldValue}"])`);
+				BTN_VIEW.click();
+				return;
+			}
+
+			changeView();
+		},
 	);
 </script>
