@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="mx-4 h-[2px] bg-surface-100"></div>
+		<div class="mx-7 h-px bg-surface-200"></div>
 
 		<div class="p-4">
 			<Button type="button" severity="secondary" variant="text" @click="menu?.toggle" aria-haspopup="true" class="w-full rounded-md">

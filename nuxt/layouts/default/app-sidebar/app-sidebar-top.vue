@@ -3,12 +3,12 @@
 		<div class="p-4">
 			<Button type="button" severity="secondary" variant="text" @click="menu?.toggle" aria-haspopup="true" class="w-full rounded-md">
 				<div class="grid flex-1 text-left text-sm leading-tight">
-					<span class="truncate font-semibold flex items-center gap-2">
-						<div class="flex size-8 aspect-square items-center rounded border" :style="{ backgroundColor: activeApp?.themeColor }">
+					<span class="flex items-center gap-2 truncate font-semibold">
+						<div class="flex aspect-square size-8 items-center rounded border" :style="{ backgroundColor: activeApp?.themeColor }">
 							<div class="size-4 shrink-0" />
 						</div>
 						<span class="truncate">{{ activeApp?.name }} </span>
-						<i class="pi pi-ellipsis-v text-xs ml-auto"></i>
+						<i class="pi pi-ellipsis-v ml-auto text-xs"></i>
 					</span>
 				</div>
 			</Button>
@@ -23,18 +23,18 @@
 					itemLabel: { class: 'text-sm truncate' },
 				}">
 				<template #item="{ item }">
-					<NuxtLink v-ripple :href="item.url" target="_blank" class="gap-2 px-3 py-2 flex items-center">
-						<div class="flex size-6 aspect-square items-center rounded border" :style="{ backgroundColor: item.themeColor }">
+					<NuxtLink v-ripple :href="item.url" target="_blank" class="flex items-center gap-2 px-3 py-2">
+						<div class="flex aspect-square size-6 items-center rounded border" :style="{ backgroundColor: item.themeColor }">
 							<div class="size-4 shrink-0" />
 						</div>
-						<span class="text-sm truncate">{{ item.label }}</span>
-						<i class="pi pi-external-link text-xs ml-auto"></i>
+						<span class="truncate text-sm">{{ item.label }}</span>
+						<i class="pi pi-external-link ml-auto text-xs"></i>
 					</NuxtLink>
 				</template>
 			</Menu>
 		</div>
 
-		<div class="bg-surface-100 h-[2px] mx-4"></div>
+		<div class="mx-7 h-px bg-surface-200"></div>
 	</div>
 </template>
 
