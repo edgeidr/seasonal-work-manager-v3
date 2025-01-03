@@ -7,20 +7,21 @@
 		badge=" "
 		badge-class="absolute translate-x-2/3 -translate-y-2/3 size-3 aspect-square min-w-fit"
 		badge-severity="danger"
-		:pt="{ label: { class: 'hidden' } }"
 		icon="pi pi-inbox"
-		rounded>
+		rounded
+		:pt="{ label: { hidden: true } }">
 	</Button>
+
 	<Popover ref="inboxMenu">
-		<div class="flex flex-col gap-4 w-[20rem]">
+		<div class="flex w-[20rem] flex-col gap-4">
 			<div>
-				<span class="px-3 font-medium block mb-2">Inbox</span>
-				<ul class="list-none p-0 m-0 flex flex-col">
-					<li v-for="message in messages" :key="message.id" class="flex gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border">
-						<div class="size-10 aspect-square border rounded-full bg-surface-50"></div>
+				<span class="mb-2 block px-3 font-medium">Inbox</span>
+				<ul class="m-0 flex list-none flex-col p-0">
+					<li v-for="message in messages" :key="message.id" class="flex cursor-pointer gap-2 px-2 py-3 rounded-border hover:bg-emphasis">
+						<div class="aspect-square size-10 rounded-full border bg-surface-50"></div>
 						<div class="flex-1">
 							<p class="text-sm">{{ message.name }}</p>
-							<div class="text-xs mt-1 text-surface-500 dark:text-surface-400 flex gap-2">
+							<div class="mt-1 flex gap-2 text-xs text-surface-500 dark:text-surface-400">
 								<p class="line-clamp-1 flex-1">{{ message.lastestMessage }}</p>
 								<span>8h</span>
 							</div>

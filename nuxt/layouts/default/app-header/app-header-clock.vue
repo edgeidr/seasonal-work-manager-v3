@@ -16,7 +16,7 @@
 				<div class="mb-2 flex items-center">
 					<span class="flex-1 px-3 font-medium">Today</span>
 					<Button variant="text" severity="secondary" size="small" icon="pi pi-ellipsis-v" @click="moreMenu?.toggle" />
-					<Menu ref="moreMenu" :model="moreMenuItems" :popup="true" :pt="moreMenuPassThrough" />
+					<Menu ref="moreMenu" :model="moreMenuItems" :popup="true" />
 				</div>
 
 				<div class="text-sm">
@@ -60,11 +60,6 @@
 	const clockMenu = ref();
 	const clockState = ref(false);
 	const moreMenu = ref();
-
-	const moreMenuPassThrough = {
-		submenuLabel: { class: "text-xs" },
-		itemLabel: { class: "text-sm truncate" },
-	};
 
 	const moreMenuItems = <MenuItem[]>[
 		{

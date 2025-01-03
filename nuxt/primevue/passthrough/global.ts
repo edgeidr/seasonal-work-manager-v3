@@ -14,4 +14,17 @@ export default <PrimeVuePTOptions>{
 		barY: { class: "bg-surface-300" },
 		barX: { class: "bg-surface-300" },
 	},
+	menu: {
+		submenuLabel: { class: "text-xs" },
+		itemLabel: { class: "text-sm truncate" },
+	},
+	panelmenu: {
+		panel: { class: "border-0 p-0 bg-transparent" },
+		item: { class: "border-l" },
+		rootList: { class: "pl-5" },
+	},
+	timeline: {
+		event: { class: "min-h-12" },
+		eventConnector: { class: "w-px" },
+	},
 };

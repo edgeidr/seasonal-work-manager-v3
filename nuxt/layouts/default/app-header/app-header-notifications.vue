@@ -4,28 +4,27 @@
 		variant="text"
 		class="aspect-square"
 		severity="secondary"
-		aria-haspopup="true"
-		aria-controls="overlay_menu"
 		badge=" "
 		badge-class="absolute translate-x-2/3 -translate-y-2/3 size-3 aspect-square min-w-fit"
 		badge-severity="danger"
-		:pt="{ label: { class: 'hidden' } }"
 		icon="pi pi-bell"
-		rounded>
+		rounded
+		:pt="{ label: { hidden: true } }">
 	</Button>
+
 	<Popover ref="notificationsMenu">
-		<div class="flex flex-col w-[20rem]">
+		<div class="flex w-[20rem] flex-col">
 			<div>
-				<span class="px-3 font-medium block mb-2">Notifications</span>
-				<ul class="list-none p-0 m-0 flex flex-col">
+				<span class="mb-2 block px-3 font-medium">Notifications</span>
+				<ul class="m-0 flex list-none flex-col p-0">
 					<li
 						v-for="notification in notifications"
 						:key="notification.id"
-						class="flex gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border">
-						<div class="size-10 aspect-square border rounded-full bg-surface-50"></div>
+						class="flex cursor-pointer gap-2 px-2 py-3 rounded-border hover:bg-emphasis">
+						<div class="aspect-square size-10 rounded-full border bg-surface-50"></div>
 						<div>
-							<p class="text-sm line-clamp-2">{{ notification.message }}</p>
-							<div class="text-xs mt-1 text-surface-500 dark:text-surface-400">Just now</div>
+							<p class="line-clamp-2 text-sm">{{ notification.message }}</p>
+							<div class="mt-1 text-xs text-surface-500 dark:text-surface-400">Just now</div>
 						</div>
 					</li>
 				</ul>

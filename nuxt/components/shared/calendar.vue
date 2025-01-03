@@ -5,20 +5,18 @@
 				size="small"
 				icon="pi pi-clock"
 				severity="secondary"
-				:variant="calendarView == 'timeGridDay' ? 'outlined' : 'text'"
+				:variant="calendarView == 'timeGridDay' ? undefined : 'text'"
 				label="Day"
 				@click="calendarView = 'timeGridDay'"
-				:pt="buttonPassThrough"
 				fluid />
 
 			<Button
 				size="small"
 				icon="pi pi-calendar"
 				severity="secondary"
-				:variant="calendarView == 'timeGridWeek' ? 'outlined' : 'text'"
+				:variant="calendarView == 'timeGridWeek' ? undefined : 'text'"
 				label="Week"
 				@click="calendarView = 'timeGridWeek'"
-				:pt="buttonPassThrough"
 				fluid />
 		</div>
 
@@ -28,7 +26,7 @@
 				v-model="selectedDate"
 				inline
 				:pt="{
-					panel: { class: 'border-none  bg-transparent p-0' },
+					panel: { class: 'border-none bg-transparent p-0' },
 					header: { class: 'border-none bg-transparent' },
 					tableBodyRow: {
 						class: [
@@ -44,17 +42,11 @@
 
 <script setup lang="ts">
 	import type { CalendarApi } from "@fullcalendar/core";
-	import type { ButtonPassThroughOptions } from "primevue";
 
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
 	const headerHeight = useState<number>("headerHeight");
 	const calendarApi = useState<CalendarApi>("calendarApi");
 	const calendarView = ref<string>("timeGridDay");
-	const buttonPassThrough = ref<ButtonPassThroughOptions>({
-		root: ({ props }) => ({
-			class: [{ "bg-surface-50": props.variant == "outlined" }],
-		}),
-	});
 
 	const topSpacing = computed(() => headerHeight.value + 12);
 

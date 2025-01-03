@@ -1,14 +1,7 @@
 <template>
-	<ScrollPanel class="flex-1 overflow-hidden">
+	<ScrollPanel class="flex-1 overflow-hidden" :pt="{ barY: '-translate-x-1' }">
 		<div class="h-full px-4">
-			<PanelMenu
-				class="gap-0 py-4"
-				:model="menuItems"
-				:pt="{
-					panel: { class: 'border-0 p-0 bg-transparent' },
-					item: { class: 'border-l' },
-					rootList: { class: 'pl-5' },
-				}">
+			<PanelMenu class="gap-0 py-4" :model="menuItems">
 				<template #item="{ item, root, active }">
 					<div v-if="item.groupLabel" class="mt-4 px-2">
 						<span class="text-xs font-medium uppercase">{{ item.label }}</span>

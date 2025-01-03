@@ -19,5 +19,5 @@
 		{ action: "Clocked Out", time: "03:01 AM" },
 	]);
 
-	const timelinePassThrough = { eventOpposite: { class: "hidden" }, event: { class: "min-h-12" }, eventConnector: { class: "w-px" } };
+	const timelinePassThrough = { eventOpposite: { hidden: true } };
 </script>

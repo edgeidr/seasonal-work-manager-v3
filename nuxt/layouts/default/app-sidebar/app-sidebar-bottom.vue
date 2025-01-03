@@ -16,15 +16,7 @@
 				</div>
 			</Button>
 
-			<Menu
-				ref="menu"
-				:model="items"
-				:popup="true"
-				:pt="{
-					submenuLabel: { class: 'text-xs' },
-					itemLabel: { class: 'text-sm truncate' },
-				}">
-			</Menu>
+			<Menu ref="menu" :model="items" :popup="true"> </Menu>
 		</div>
 	</div>
 </template>

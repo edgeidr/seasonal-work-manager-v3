@@ -20,6 +20,7 @@ export default defineNuxtConfig({
 		importTheme: { from: "@/primevue/themes/aura", as: "auraTheme" },
 		importPT: { from: "@/primevue/passthrough/global", as: "globalPT" },
 		options: {
+			ptOptions: { mergeProps: true },
 			ripple: true,
 			inputVariant: "filled",
 			locale: {

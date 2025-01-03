@@ -8,20 +8,12 @@
 							<div class="size-4 shrink-0" />
 						</div>
 						<span class="truncate">{{ activeApp?.name }} </span>
-						<i class="pi pi-ellipsis-v ml-auto text-xs"></i>
+						<i class="pi pi-ellipsis-v max-w- ml-auto text-xs"></i>
 					</span>
 				</div>
 			</Button>
 
-			<Menu
-				ref="menu"
-				:model="items"
-				:popup="true"
-				:pt="{
-					root: { class: 'max-w-64' },
-					submenuLabel: { class: 'text-xs' },
-					itemLabel: { class: 'text-sm truncate' },
-				}">
+			<Menu ref="menu" :model="items" :popup="true" :pt="{ root: { class: 'max-w-56' } }">
 				<template #item="{ item }">
 					<NuxtLink v-ripple :href="item.url" target="_blank" class="flex items-center gap-2 px-3 py-2">
 						<div class="flex aspect-square size-6 items-center rounded border" :style="{ backgroundColor: item.themeColor }">
