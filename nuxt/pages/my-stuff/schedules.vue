@@ -1,7 +1,7 @@
 <template>
     <div class="flex gap-6">
-        <MyStuffSchedulesTimegrid />
-        <MyStuffSchedulesCalendar />
+        <SharedTimegrid />
+        <SharedCalendar />
     </div>
 </template>
 

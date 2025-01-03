@@ -39,6 +39,6 @@ export default defineNuxtConfig({
         },
     },
     routeRules: {
-        "/": { redirect: "/my-stuff/schedules" },
+        "/": { redirect: "/schedules" },
     },
 });

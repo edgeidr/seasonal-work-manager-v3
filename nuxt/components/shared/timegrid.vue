@@ -1,6 +1,6 @@
 <template>
     <div class="flex-1">
-        <FullCalendar ref="calendarRef" :options="calendarOptions" />
+        <FullCalendar ref="calendarRef" :options="calendarOptions" class="mt-6" />
     </div>
 </template>
 
