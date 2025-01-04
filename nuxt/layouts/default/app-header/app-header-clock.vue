@@ -11,28 +11,28 @@
 		rounded />
 
 	<Popover ref="clockMenu">
-		<div class="flex w-52 flex-col gap-3">
+		<div class="flex w-52 flex-col gap-3 py-2">
 			<div>
 				<div class="mb-2 flex items-center">
-					<span class="flex-1 px-3 font-medium">Today</span>
+					<span class="flex-1 px-2 font-medium">Today</span>
 					<Button variant="text" severity="secondary" size="small" icon="pi pi-ellipsis-v" @click="moreMenu?.toggle" />
 					<Menu ref="moreMenu" :model="moreMenuItems" :popup="true" />
 				</div>
 
 				<div class="text-sm">
-					<div class="flex px-3 py-2">
+					<div class="flex p-2">
 						<span class="text-surface-500">Clock In:</span>
 						<span class="ml-auto font-[Roboto] font-medium text-surface-700">06:45 PM</span>
 					</div>
 
-					<div class="flex px-3 py-2">
+					<div class="flex p-2">
 						<span class="text-surface-500">Clock Out:</span>
 						<span class="ml-auto font-[Roboto] font-medium text-surface-700">03:01 AM</span>
 					</div>
 				</div>
 			</div>
 
-			<div>
+			<div class="px-2">
 				<Button
 					:label="clockActiveState ? 'Clock Out' : 'Clock In'"
 					:icon="clockActiveState ? 'pi pi-sign-out' : 'pi pi-sign-in'"
