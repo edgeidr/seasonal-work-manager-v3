@@ -1,32 +1,32 @@
 [
 	{
 		"name": "Timekeeping and Attendance System",
+		"shortName": "T&A",
 		"url": "http://localhost:3000/",
-		"logo": "",
-		"themeColor": "#EA580C"
+		"logo": ""
 	},
 	{
 		"name": "Seat Booking Application",
+		"shortName": "SBA",
 		"url": "http://localhost:3000/",
-		"logo": "",
-		"themeColor": "#16A34A"
+		"logo": ""
 	},
 	{
 		"name": "Engagement Rewards Platform",
+		"shortName": "ERP",
 		"url": "http://localhost:3000/",
-		"logo": "",
-		"themeColor": "#EA580C"
+		"logo": ""
 	},
 	{
 		"name": "Document Request Tool",
+		"shortName": "DRT",
 		"url": "http://localhost:3000/",
-		"logo": "",
-		"themeColor": "#2563EB"
+		"logo": ""
 	},
 	{
 		"name": "Seasonal Work Manager",
+		"shortName": "SWM",
 		"url": "http://localhost:3000/",
-		"logo": "",
-		"themeColor": "#16A34A"
+		"logo": ""
 	}
 ]

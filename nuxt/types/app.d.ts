@@ -1,8 +1,8 @@
 declare global {
 	type App = {
 		name: string;
+		shortName: string;
 		url: string;
-		themeColor: string;
 		logo?: string;
 	};
 
