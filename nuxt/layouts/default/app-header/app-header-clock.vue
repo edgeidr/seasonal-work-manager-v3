@@ -1,6 +1,6 @@
 <template>
 	<Button
-		label="00:00:00"
+		:label="clockLabel"
 		icon="pi pi-stopwatch"
 		@click="clockMenu?.toggle"
 		variant="text"
@@ -22,22 +22,22 @@
 				<div class="text-sm">
 					<div class="flex p-2">
 						<span class="text-surface-500">Clock In:</span>
-						<span class="ml-auto font-[Roboto] font-medium text-surface-700">06:45 PM</span>
+						<span class="ml-auto font-[Roboto] font-medium text-surface-700">{{ clockInLabel }}</span>
 					</div>
 
 					<div class="flex p-2">
 						<span class="text-surface-500">Clock Out:</span>
-						<span class="ml-auto font-[Roboto] font-medium text-surface-700">03:01 AM</span>
+						<span class="ml-auto font-[Roboto] font-medium text-surface-700">{{ clockOutLabel }}</span>
 					</div>
 				</div>
 			</div>
 
 			<div class="px-2">
 				<Button
-					:label="clockActiveState ? 'Clock Out' : 'Clock In'"
-					:icon="clockActiveState ? 'pi pi-sign-out' : 'pi pi-sign-in'"
+					:label="clockState.active ? 'Clock Out' : 'Clock In'"
+					:icon="clockState.active ? 'pi pi-sign-out' : 'pi pi-sign-in'"
 					severity="secondary"
-					:class="[clockActiveState ? 'hover:border-red-100 hover:bg-red-100' : 'hover:border-green-100 hover:bg-green-100']"
+					:class="[clockState.active ? 'hover:border-red-100 hover:bg-red-100' : 'hover:border-green-100 hover:bg-green-100']"
 					@click="showConfirm"
 					size="small"
 					fluid />
@@ -47,12 +47,19 @@
 </template>
 
 <script setup lang="ts">
+	import { formatDate } from "@fullcalendar/core/index.js";
 	import type { MenuItem } from "primevue/menuitem";
 
 	const clockMenu = ref();
-	const clockActiveState = ref(false);
 	const moreMenu = ref();
 	const confirm = useConfirm();
+	const clockState = useLocalStorage<ClockState>("clockState", () => {
+		return {
+			active: false,
+			in: null,
+			out: null,
+		};
+	});
 
 	const moreMenuItems = <MenuItem[]>[
 		{
@@ -67,8 +74,55 @@
 		},
 	];
 
+	const clockLabel = computed(() => {
+		const timeIn = new Date(clockState.value.in || 0).getTime();
+		const timeOut = new Date(clockState.value.out || 0).getTime();
+
+		if (clockState.value.in && clockState.value.active) {
+			const { value: timestamp } = useTimestamp();
+
+			return formatDate(timestamp - timeIn, {
+				hour: "2-digit",
+				minute: "2-digit",
+				second: "2-digit",
+				meridiem: false,
+				hour12: false,
+				timeZone: "UTC",
+			});
+		} else if (clockState.value.in && clockState.value.out && !clockState.value.active) {
+			return formatDate(timeOut - timeIn, {
+				hour: "2-digit",
+				minute: "2-digit",
+				second: "2-digit",
+				meridiem: false,
+				hour12: false,
+				timeZone: "UTC",
+			});
+		} else {
+			return "00:00:00";
+		}
+	});
+
+	const clockInLabel = computed(() => {
+		return clockState.value.in ? useDateFormat(clockState.value.in, "hh:mm a").value : null;
+	});
+
+	const clockOutLabel = computed(() => {
+		return clockState.value.out ? useDateFormat(clockState.value.out, "hh:mm a").value : null;
+	});
+
 	const showConfirm = () => {
-		const message = "Do you want to continue?";
+		let message, confirmSeverity, newClockState;
+
+		if (clockState.value.active) {
+			message = "Confirm clock-out at this time?";
+			confirmSeverity = "danger";
+			newClockState = false;
+		} else {
+			message = "Confirm clock-in at this time?";
+			confirmSeverity = "success";
+			newClockState = true;
+		}
 
 		confirm.require({
 			message: message,
@@ -80,12 +134,18 @@
 			},
 			acceptProps: {
 				label: "Confirm",
-				severity: clockActiveState.value ? "danger" : "success",
+				severity: confirmSeverity,
 			},
 			accept: () => {
-				clockActiveState.value = !clockActiveState.value;
+				clockState.value.active = newClockState;
+
+				if (newClockState) {
+					clockState.value.in = new Date();
+					clockState.value.out = null;
+				} else {
+					clockState.value.out = new Date();
+				}
 			},
-			reject: () => {},
 		});
 	};
 </script>
