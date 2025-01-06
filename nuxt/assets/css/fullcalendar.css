@@ -14,7 +14,7 @@
 	/* --fc-button-active-border-color: #151e27; */
 
 	--fc-event-bg-color: #d1fae5;
-	--fc-event-border-color: #a7f3d0;
+	--fc-event-border-color: var(--p-primary-400);
 	--fc-event-text-color: var(--p-text-color);
 	/* --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25); */
 
@@ -23,7 +23,7 @@
 
 	/* --fc-event-resizer-thickness: 8px; */
 	/* --fc-event-resizer-dot-total-width: 8px; */
-	/* --fc-event-resizer-dot-border-width: 1px; */
+	--fc-event-resizer-dot-border-width: 1px;
 
 	/* --fc-non-business-color: rgba(215, 215, 215, 0.3); */
 	/* --fc-bg-event-color: rgb(143, 223, 130); */
@@ -91,4 +91,8 @@
 
 .fc .fc-timegrid-slots {
 	@apply border-b;
+}
+
+.fc .fc-timegrid-event {
+	@apply rounded-md;
 }
