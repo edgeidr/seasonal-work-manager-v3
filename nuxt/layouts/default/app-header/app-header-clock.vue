@@ -47,9 +47,9 @@
 </template>
 
 <script setup lang="ts">
-	import { formatDate } from "@fullcalendar/core/index.js";
 	import type { MenuItem } from "primevue/menuitem";
 
+	const { formatDateTime } = useDateTime();
 	const clockMenu = ref();
 	const moreMenu = ref();
 	const confirm = useConfirm();
@@ -79,22 +79,20 @@
 		const timeOut = new Date(clockState.value.out || 0).getTime();
 
 		if (clockState.value.in && clockState.value.active) {
-			const { value: timestamp } = useTimestamp();
+			const { value: timestamp } = useTimestamp({ offset: -timeIn });
 
-			return formatDate(timestamp - timeIn, {
+			return formatDateTime(timestamp, {
 				hour: "2-digit",
 				minute: "2-digit",
 				second: "2-digit",
-				meridiem: false,
 				hour12: false,
 				timeZone: "UTC",
 			});
 		} else if (clockState.value.in && clockState.value.out && !clockState.value.active) {
-			return formatDate(timeOut - timeIn, {
+			return formatDateTime(timeOut - timeIn, {
 				hour: "2-digit",
 				minute: "2-digit",
 				second: "2-digit",
-				meridiem: false,
 				hour12: false,
 				timeZone: "UTC",
 			});
@@ -104,7 +102,7 @@
 	});
 
 	const clockInLabel = computed(() => {
-		return clockState.value.in ? useDateFormat(clockState.value.in, "hh:mm a").value : null;
+		return clockState.value.in ? useDateFormat(clockState.value.in, "hh:mm a", {}).value : null;
 	});
 
 	const clockOutLabel = computed(() => {
