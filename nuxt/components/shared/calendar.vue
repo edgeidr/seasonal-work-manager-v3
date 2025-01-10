@@ -1,18 +1,32 @@
 <template>
 	<div class="sticky bottom-0 h-fit w-80" :style="{ top: `${topSpacing}px` }">
-		<SelectButton ref="selectViewRef" option v-model="calendarView" :options="calendarViews" option-label="label" option-value="value" class="w-full px-3">
-			<template #option="{ option }">
-				<div class="flex w-min items-center gap-2" :data-value="option.value">
-					<i :class="option.icon" class="text-sm"></i>
-					<span class="text-sm">{{ option.label }}</span>
-				</div>
-			</template>
-		</SelectButton>
+		<div class="px-3">
+			<div class="p-selectbutton w-full gap-1.5 bg-surface-100 p-1.5">
+				<Button
+					v-for="item in calendarViews"
+					:key="item.value"
+					:label="item.label"
+					:icon="item.icon"
+					variant="text"
+					severity="secondary"
+					size="small"
+					@click="calendarView = item.value"
+					fluid
+					:pt="{
+						root: {
+							class: [
+								{ 'bg-surface-0 shadow-sm text-surface-700': calendarView == item.value },
+								{ 'hover:bg-transparent hover:text-surface-700': calendarView != item.value },
+							],
+						},
+					}" />
+			</div>
+		</div>
 
 		<div class="rounded-2xl p-0">
 			<DatePicker
-				fluid
 				v-model="selectedDate"
+				fluid
 				inline
 				selectOtherMonths
 				:pt="{
@@ -37,7 +51,7 @@
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
 	const headerHeight = useState<number>("headerHeight");
 	const calendarApi = useState<CalendarApi>("calendarApi");
-	const calendarView = ref<string>("timeGridDay");
+	const calendarView = useSessionStorage("calendarView", () => "timeGridDay");
 	const calendarViews = [
 		{
 			value: "timeGridDay",
@@ -53,10 +67,6 @@
 
 	const topSpacing = computed(() => headerHeight.value + 12);
 
-	const changeView = () => {
-		calendarApi.value?.changeView(calendarView.value);
-	};
-
 	onMounted(async () => {
 		await nextTick();
 		calendarApi.value?.updateSize();
@@ -64,14 +74,10 @@
 
 	watch(
 		() => calendarView.value,
-		(newValue, oldValue) => {
-			if (!newValue) {
-				const BTN_VIEW = <HTMLElement>selectViewRef.value?.$el.querySelector(`.p-togglebutton:has([data-value="${oldValue}"])`);
-				BTN_VIEW.click();
-				return;
-			}
-
-			changeView();
+		async (newValue, oldValue) => {
+			await nextTick();
+			calendarApi.value?.changeView(calendarView.value);
 		},
+		{ immediate: true },
 	);
 </script>
