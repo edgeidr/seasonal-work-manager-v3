@@ -14,6 +14,7 @@
 				fluid
 				v-model="selectedDate"
 				inline
+				selectOtherMonths
 				:pt="{
 					panel: { class: 'border-none bg-transparent px-0' },
 					header: { class: 'border-none bg-transparent' },
