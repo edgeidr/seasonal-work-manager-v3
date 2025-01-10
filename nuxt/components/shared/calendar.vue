@@ -1,6 +1,6 @@
 <template>
 	<div class="sticky bottom-0 h-fit w-80" :style="{ top: `${topSpacing}px` }">
-		<SelectButton ref="selectViewRef" option v-model="calendarView" :options="calendarViews" option-label="label" option-value="value" class="w-full px-6">
+		<SelectButton ref="selectViewRef" option v-model="calendarView" :options="calendarViews" option-label="label" option-value="value" class="w-full px-3">
 			<template #option="{ option }">
 				<div class="flex w-min items-center gap-2" :data-value="option.value">
 					<i :class="option.icon" class="text-sm"></i>
@@ -15,7 +15,7 @@
 				v-model="selectedDate"
 				inline
 				:pt="{
-					panel: { class: 'border-none bg-transparent' },
+					panel: { class: 'border-none bg-transparent px-0' },
 					header: { class: 'border-none bg-transparent' },
 					tableBodyRow: {
 						class: [

@@ -96,3 +96,7 @@
 .fc .fc-timegrid-event {
 	@apply rounded-md;
 }
+
+.fc .fc-timegrid-col-events {
+	@apply mx-[2%];
+}
