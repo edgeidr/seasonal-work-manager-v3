@@ -1,7 +1,7 @@
 <template>
 	<div class="sticky bottom-0 h-fit w-80" :style="{ top: `${topSpacing}px` }">
 		<div class="px-3">
-			<div class="p-selectbutton w-full gap-1.5 bg-surface-100 p-1.5">
+			<div class="flex w-full gap-1.5 rounded-md bg-surface-100 p-1.5">
 				<Button
 					v-for="item in calendarViews"
 					:key="item.value"
@@ -46,6 +46,7 @@
 
 <script setup lang="ts">
 	import type { CalendarApi } from "@fullcalendar/core";
+	import { ToggleButton } from "primevue";
 
 	const selectViewRef = ref<ComponentPublicInstance>();
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
