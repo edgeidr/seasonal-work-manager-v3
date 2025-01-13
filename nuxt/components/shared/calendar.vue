@@ -46,9 +46,7 @@
 
 <script setup lang="ts">
 	import type { CalendarApi } from "@fullcalendar/core";
-	import { ToggleButton } from "primevue";
 
-	const selectViewRef = ref<ComponentPublicInstance>();
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
 	const headerHeight = useState<number>("headerHeight");
 	const calendarApi = useState<CalendarApi>("calendarApi");
@@ -77,7 +75,7 @@
 		() => calendarView.value,
 		async (newValue, oldValue) => {
 			await nextTick();
-			calendarApi.value?.changeView(calendarView.value);
+			calendarApi.value?.changeView(newValue);
 		},
 		{ immediate: true },
 	);
