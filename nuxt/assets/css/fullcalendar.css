@@ -85,7 +85,7 @@
 	@apply relative left-0 before:absolute before:size-2 before:-translate-x-1 before:-translate-y-1/2 before:rounded-full before:bg-red-500;
 }
 
-.fc .fc-event-main-frame {
+.fc .fc-event-main {
 	@apply px-1;
 }
 

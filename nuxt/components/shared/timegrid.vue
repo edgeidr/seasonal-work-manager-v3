@@ -25,6 +25,17 @@
 			editable: true,
 			allDaySlot: false,
 			scrollTimeReset: false,
+			eventContent: (arg) => {
+				const title = document.createElement("div");
+				title.textContent = arg.event.title;
+				title.className = "fc-event-title font-medium";
+
+				const time = document.createElement("div");
+				time.textContent = arg.timeText;
+				time.className = "fc-event-time font-light";
+
+				return { domNodes: [title, time] };
+			},
 			eventTimeFormat: {
 				hour: "2-digit",
 				minute: "2-digit",
