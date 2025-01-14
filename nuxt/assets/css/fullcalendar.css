@@ -1,9 +1,9 @@
 :root {
 	--fc-small-font-size: 0.85em;
 	--fc-page-bg-color: transparent;
-	/* --fc-neutral-bg-color: rgba(208, 208, 208, 0.3); */
+	--fc-neutral-bg-color: var(--p-gray-200);
 	/* --fc-neutral-text-color: #808080; */
-	/* --fc-border-color: transparent; */
+	--fc-border-color: var(--p-gray-200);
 
 	/* --fc-button-text-color: #fff; */
 	/* --fc-button-bg-color: #2C3E50; */
@@ -56,13 +56,8 @@
 
 .fc .fc-col-header-cell,
 .fc .fc-timegrid-axis,
-.fc .fc-timegrid-slot-lane,
-.fc .fc-timegrid-col {
+.fc .fc-timegrid-slot-lane {
 	@apply border-x-0;
-}
-
-.fc .fc-timegrid-col.fc-day {
-	@apply border-l-0 border-r;
 }
 
 .fc .fc-timegrid-slots tbody > tr:first-child > .fc-timegrid-slot-label {
@@ -70,7 +65,7 @@
 }
 
 .fc .fc-timegrid-slot-label-cushion {
-	@apply -translate-y-1/2 text-surface-500;
+	@apply -translate-y-1/2 pl-0 pr-5 text-surface-500;
 }
 
 .fc .fc-timegrid-now-indicator-arrow {
@@ -89,10 +84,6 @@
 	@apply px-1;
 }
 
-.fc .fc-timegrid-slots {
-	@apply border-b;
-}
-
 .fc .fc-timegrid-event {
 	@apply rounded-md;
 }
@@ -107,4 +98,12 @@
 
 .fc .fc-event-title {
 	@apply text-xs font-medium;
+}
+
+.fc .fc-timegrid-divider {
+	@apply p-0;
+}
+
+.fc .fc-timegrid-slot-lane:not(.fc-timegrid-slot-minor) {
+	@apply relative after:absolute after:-top-px after:right-full after:h-px after:w-3 after:bg-gray-200;
 }

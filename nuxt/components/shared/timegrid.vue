@@ -23,7 +23,6 @@
 			initialView: "timeGridWeek",
 			nowIndicator: true,
 			editable: true,
-			allDaySlot: false,
 			scrollTimeReset: false,
 			eventContent: (arg) => {
 				const title = document.createElement("div");
@@ -40,6 +39,7 @@
 
 				return { domNodes: [frame] };
 			},
+			allDayText: "",
 			dayHeaderContent: (arg) => {
 				const date = arg.date;
 
@@ -67,6 +67,8 @@
 			slotLabelInterval: "01:00",
 			height: "auto",
 			initialEvents: [
+				{ title: "Holiday", start: new Date().setDate(new Date().getDate() - 1), allDay: true },
+				{ title: "Long event", start: new Date(), end: new Date().setDate(new Date().getDate() + 2), allDay: true },
 				{ title: "First event", start: new Date().setHours(6, 0, 0) },
 				{ title: "Second event", start: new Date().setHours(6, 45, 0) },
 				{ title: "Third event", start: new Date().setHours(8, 0, 0), end: new Date().setHours(10, 0, 0) },
