@@ -1,0 +1,10 @@
+@layer tailwind-utilities {
+	.p-scrollpanel-bar {
+		opacity: 0;
+	}
+
+	.p-scrollpanel:hover > .p-scrollpanel-bar,
+	.p-scrollpanel:active > .p-scrollpanel-bar {
+		opacity: 1;
+	}
+}
