@@ -49,7 +49,7 @@
 
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
 	const calendarApi = useState<CalendarApi>("calendarApi");
-	const calendarView = useSessionStorage("calendarView", () => "timeGridDay");
+	const calendarView = useSessionStorage("calendarView", () => "timeGridWeek");
 	const calendarViews = [
 		{
 			value: "timeGridDay",

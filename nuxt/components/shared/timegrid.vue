@@ -8,7 +8,7 @@
 	import FullCalendar from "@fullcalendar/vue3";
 	import interactionPlugin from "@fullcalendar/interaction";
 	import timeGridPlugin from "@fullcalendar/timegrid";
-	import type { CalendarApi, CalendarOptions } from "@fullcalendar/core";
+	import { formatDate, type CalendarApi, type CalendarOptions } from "@fullcalendar/core";
 
 	const calendarRef = ref();
 	const selectedDate = useState<Date>("selectedDate");
@@ -20,7 +20,7 @@
 		return {
 			headerToolbar: false,
 			plugins: [interactionPlugin, timeGridPlugin],
-			initialView: "timeGrid",
+			initialView: "timeGridWeek",
 			nowIndicator: true,
 			editable: true,
 			allDaySlot: false,
@@ -28,13 +28,30 @@
 			eventContent: (arg) => {
 				const title = document.createElement("div");
 				title.textContent = arg.event.title;
-				title.className = "fc-event-title font-medium";
+				title.className = "fc-event-title";
 
 				const time = document.createElement("div");
 				time.textContent = arg.timeText;
-				time.className = "fc-event-time font-light";
+				time.className = "fc-event-time";
 
-				return { domNodes: [title, time] };
+				const frame = document.createElement("div");
+				frame.append(title, time);
+				frame.className = "fc-event-main-frame";
+
+				return { domNodes: [frame] };
+			},
+			dayHeaderContent: (arg) => {
+				const date = arg.date;
+
+				const day = document.createElement("div");
+				day.textContent = date.getDate().toString();
+				day.className = arg.isToday ? "font-semibold" : "font-light";
+
+				const weekday = document.createElement("div");
+				weekday.textContent = formatDate(date, { weekday: "short" });
+				weekday.className = arg.isToday ? "font-semibold" : "font-light";
+
+				return { domNodes: [day, weekday] };
 			},
 			eventTimeFormat: {
 				hour: "2-digit",
@@ -49,7 +66,6 @@
 			slotDuration: "00:15",
 			slotLabelInterval: "01:00",
 			height: "auto",
-			dayHeaderFormat: { weekday: "short", day: "numeric" },
 			initialEvents: [
 				{ title: "First event", start: new Date().setHours(6, 0, 0) },
 				{ title: "Second event", start: new Date().setHours(6, 45, 0) },

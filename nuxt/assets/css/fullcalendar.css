@@ -85,7 +85,7 @@
 	@apply relative left-0 before:absolute before:size-2 before:-translate-x-1 before:-translate-y-1/2 before:rounded-full before:bg-red-500;
 }
 
-.fc .fc-event-main {
+.fc .fc-event-main-frame {
 	@apply px-1;
 }
 
@@ -99,4 +99,12 @@
 
 .fc .fc-timegrid-col-events {
 	@apply mx-[2%];
+}
+
+.fc .fc-timegrid-event-short .fc-event-time {
+	@apply before:pr-1 before:content-[","] after:content-none;
+}
+
+.fc .fc-event-title {
+	@apply text-xs font-medium;
 }
