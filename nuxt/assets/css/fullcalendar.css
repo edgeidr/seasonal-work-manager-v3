@@ -88,8 +88,14 @@
 	@apply rounded-md;
 }
 
-.fc .fc-timegrid-col-events {
-	@apply mx-[2%];
+.fc .fc-timegrid-col-events,
+.fc .fc-daygrid-day-events {
+	@apply mx-[1.5%];
+}
+
+.fc .fc-daygrid-event.fc-event-start,
+.fc .fc-daygrid-event.fc-event-end {
+	@apply mx-0;
 }
 
 .fc .fc-timegrid-event-short .fc-event-time {
