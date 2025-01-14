@@ -35,7 +35,6 @@
 				minute: "2-digit",
 				meridiem: "lowercase",
 			},
-
 			slotDuration: "00:15",
 			slotLabelInterval: "01:00",
 			height: "auto",
