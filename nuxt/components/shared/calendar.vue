@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="min-w-72">
 		<div class="px-3">
 			<div class="flex w-full gap-1.5 rounded-md bg-surface-100 p-1.5">
 				<Button
@@ -10,13 +10,13 @@
 					variant="text"
 					severity="secondary"
 					size="small"
-					@click="calendarView = item.value"
+					@click="$emit('update:view', item.value)"
 					fluid
 					:pt="{
 						root: {
 							class: [
-								{ 'bg-surface-0 shadow-sm text-surface-700': calendarView == item.value },
-								{ 'hover:bg-transparent hover:text-surface-700': calendarView != item.value },
+								{ 'bg-surface-0 shadow-sm text-surface-700': props.view == item.value },
+								{ 'hover:bg-transparent hover:text-surface-700': props.view != item.value },
 							],
 						},
 					}" />
@@ -25,7 +25,9 @@
 
 		<div class="rounded-2xl p-0">
 			<DatePicker
-				v-model="selectedDate"
+				:value="props.date"
+				:defaultValue="props.date"
+				@valueChange="$emit('update:date', $event)"
 				fluid
 				inline
 				selectOtherMonths
@@ -35,7 +37,7 @@
 					tableBodyRow: {
 						class: [
 							{
-								'p-datepicker-week': calendarView == 'timeGridWeek',
+								'p-datepicker-week': props.view == 'timeGridWeek',
 							},
 						],
 					},
@@ -47,9 +49,21 @@
 <script setup lang="ts">
 	import type { CalendarApi } from "@fullcalendar/core";
 
-	const selectedDate = useState<Date>("selectedDate", () => new Date());
-	const calendarApi = useState<CalendarApi>("calendarApi");
-	const calendarView = useSessionStorage("calendarView", () => "timeGridWeek");
+	const props = defineProps({
+		date: {
+			type: Date,
+			required: true,
+		},
+		view: {
+			type: String,
+			required: true,
+		},
+		calendarApi: {
+			type: Object as () => CalendarApi,
+			required: false,
+		},
+	});
+
 	const calendarViews = [
 		{
 			value: "timeGridDay",
@@ -63,16 +77,11 @@
 		},
 	];
 
-	onMounted(async () => {
-		await nextTick();
-		calendarApi.value?.updateSize();
-	});
-
 	watch(
-		() => calendarView.value,
+		() => props.view,
 		async (newValue, oldValue) => {
 			await nextTick();
-			calendarApi.value?.changeView(newValue);
+			props.calendarApi?.changeView(newValue);
 		},
 		{ immediate: true },
 	);

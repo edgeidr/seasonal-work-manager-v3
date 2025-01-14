@@ -10,20 +10,25 @@
 	import timeGridPlugin from "@fullcalendar/timegrid";
 	import { formatDate, type CalendarApi, type CalendarOptions } from "@fullcalendar/core";
 
-	const calendarRef = ref();
-	const selectedDate = useState<Date>("selectedDate");
-	const calendarApi = computed<CalendarApi>(() => calendarRef.value?.getApi());
+	const props = defineProps({
+		date: {
+			type: Date,
+			required: true,
+		},
+	});
 
-	useState("calendarApi", () => calendarApi);
+	const calendarRef = ref();
+	const calendarApi = computed<CalendarApi>(() => calendarRef.value?.getApi());
 
 	const calendarOptions = computed<CalendarOptions>(() => {
 		return {
 			headerToolbar: false,
 			plugins: [interactionPlugin, timeGridPlugin],
-			initialView: "timeGridWeek",
+			initialView: "timeGridDay",
 			nowIndicator: true,
 			editable: true,
 			scrollTimeReset: false,
+			allDayText: "",
 			eventContent: (arg) => {
 				const title = document.createElement("div");
 				title.textContent = arg.event.title;
@@ -39,7 +44,6 @@
 
 				return { domNodes: [frame] };
 			},
-			allDayText: "",
 			dayHeaderContent: (arg) => {
 				const date = arg.date;
 
@@ -79,9 +83,13 @@
 	});
 
 	watch(
-		() => selectedDate.value,
-		(newValue) => {
+		() => props.date,
+		async (newValue) => {
+			await nextTick();
 			calendarApi.value?.gotoDate(newValue);
 		},
+		{ immediate: true },
 	);
+
+	defineExpose({ calendarApi });
 </script>
