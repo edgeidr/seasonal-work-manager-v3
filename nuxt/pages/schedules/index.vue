@@ -1,5 +1,5 @@
 <template>
-	<div class="flex gap-3">
+	<div class="flex h-full gap-3">
 		<SharedTimegrid />
 		<SharedCalendar />
 	</div>

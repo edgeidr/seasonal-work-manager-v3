@@ -1,5 +1,5 @@
 <template>
-	<div class="sticky bottom-0 h-fit w-80" :style="{ top: `${topSpacing}px` }">
+	<div>
 		<div class="px-3">
 			<div class="flex w-full gap-1.5 rounded-md bg-surface-100 p-1.5">
 				<Button
@@ -48,7 +48,6 @@
 	import type { CalendarApi } from "@fullcalendar/core";
 
 	const selectedDate = useState<Date>("selectedDate", () => new Date());
-	const headerHeight = useState<number>("headerHeight");
 	const calendarApi = useState<CalendarApi>("calendarApi");
 	const calendarView = useSessionStorage("calendarView", () => "timeGridDay");
 	const calendarViews = [
@@ -63,8 +62,6 @@
 			icon: "pi pi-calendar",
 		},
 	];
-
-	const topSpacing = computed(() => headerHeight.value + 12);
 
 	onMounted(async () => {
 		await nextTick();

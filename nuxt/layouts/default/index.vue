@@ -2,14 +2,11 @@
 	<div class="flex">
 		<AppSidebar />
 
-		<div class="w-full">
+		<div class="flex w-full flex-col">
 			<AppHeader />
-
-			<main>
-				<div class="flex-1 pb-6 pl-3 pr-6 pt-3">
-					<slot />
-				</div>
-			</main>
+			<AppMain>
+				<slot />
+			</AppMain>
 		</div>
 	</div>
 </template>
@@ -17,4 +14,5 @@
 <script setup lang="ts">
 	import AppSidebar from "./app-sidebar/index.vue";
 	import AppHeader from "./app-header/index.vue";
+	import AppMain from "./app-main/index.vue";
 </script>

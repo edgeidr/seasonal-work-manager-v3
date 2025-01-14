@@ -1,7 +1,7 @@
 <template>
-	<div class="flex-1">
-		<FullCalendar ref="calendarRef" :options="calendarOptions" />
-	</div>
+	<ScrollPanel>
+		<FullCalendar ref="calendarRef" :options="calendarOptions" class="h-px" />
+	</ScrollPanel>
 </template>
 
 <script setup lang="ts">
@@ -11,9 +11,7 @@
 	import type { CalendarApi, CalendarOptions } from "@fullcalendar/core";
 
 	const calendarRef = ref();
-	const headerHeight = useState<number>("headerHeight");
 	const selectedDate = useState<Date>("selectedDate");
-	const topSpacing = computed(() => headerHeight.value);
 	const calendarApi = computed<CalendarApi>(() => calendarRef.value?.getApi());
 
 	useState("calendarApi", () => calendarApi);
@@ -51,17 +49,6 @@
 			],
 		};
 	});
-
-	watch(
-		() => topSpacing.value,
-		(newValue) => {
-			const FC_HEADERS = <NodeListOf<HTMLElement>>document?.querySelectorAll(".fc .fc-scrollgrid-section-sticky > *");
-
-			for (const FC_HEADER of FC_HEADERS) {
-				FC_HEADER.style.top = `${newValue}px`;
-			}
-		},
-	);
 
 	watch(
 		() => selectedDate.value,

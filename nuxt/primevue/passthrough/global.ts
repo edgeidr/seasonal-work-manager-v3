@@ -11,8 +11,8 @@ export default <PrimeVuePTOptions>{
 		pcNextButton: { icon: { class: "size-3" } },
 	},
 	scrollpanel: {
-		barY: { class: "bg-surface-300" },
-		barX: { class: "bg-surface-300" },
+		barY: { class: "bg-surface-200" },
+		barX: { class: "bg-surface-200" },
 	},
 	menu: {
 		submenuLabel: { class: "text-xs" },
