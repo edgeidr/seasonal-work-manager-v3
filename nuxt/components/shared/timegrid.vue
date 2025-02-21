@@ -1,6 +1,6 @@
 <template>
 	<div class="flex h-full gap-3">
-		<ScrollPanel>
+		<ScrollPanel class="w-full">
 			<FullCalendar ref="calendarRef" :options="calendarOptions" class="h-px" />
 		</ScrollPanel>
 
