@@ -1,24 +1,24 @@
 <template>
-	<div class="mx-auto w-full max-w-sm space-y-6">
-		<Form v-slot="$form" :resolver="resolver" @submit="onSubmit" :validateOnBlur="true" :validateOnValueUpdate="false">
-			<div class="mb-6">
-				<h1 class="text-2xl font-medium tracking-tight">Hi, {{ loginName }}</h1>
-				<p class="text-muted-color">Enter your password to complete sign-in</p>
-			</div>
+	<Form v-slot="$form" :resolver="resolver" @submit="onSubmit" :validateOnBlur="true" :validateOnValueUpdate="false">
+		<div class="mb-6">
+			<h1 class="text-2xl font-medium tracking-tight">Hi, {{ loginName }}</h1>
+			<p class="text-muted-color">Enter your password to complete sign-in</p>
+		</div>
 
-			<div class="space-y-3">
-				<div>
-					<label class="sr-only"> Password </label>
-					<Password name="password" ref="passwordRef" :feedback="false" toggle-mask fluid required />
-					<Message v-if="$form.password?.error" class="grid" severity="error" variant="simple">
+		<div class="space-y-3">
+			<div>
+				<label class="sr-only"> Password </label>
+				<Password name="password" ref="passwordRef" :feedback="false" toggle-mask fluid required />
+				<Transition v-bind="heightTransition">
+					<Message v-if="$form.password?.error" severity="error" variant="simple">
 						{{ $form.password?.error?.message }}
 					</Message>
-				</div>
-
-				<Button type="submit" label="Continue with Email" :icon="loading ? 'pi pi-spinner pi-spin' : ''" :loading="loading" fluid />
+				</Transition>
 			</div>
-		</Form>
-	</div>
+
+			<Button type="submit" label="Sign In" :icon="loading ? 'pi pi-spinner pi-spin' : ''" :loading="loading" fluid />
+		</div>
+	</Form>
 </template>
 
 <script setup lang="ts">
@@ -30,6 +30,7 @@
 	const loginAccount = useState("loginAccount");
 	const loginName = useState("loginName");
 	const loading = ref(false);
+	const passwordRef = ref();
 
 	const resolver = yupResolver(
 		yup.object({
@@ -62,4 +63,8 @@
 			}
 		}, 1000);
 	};
+
+	onMounted(() => {
+		passwordRef.value?.$pcForm.$el[0].focus();
+	});
 </script>

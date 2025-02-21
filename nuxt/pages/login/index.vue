@@ -1,51 +1,24 @@
 <template>
-	<div class="mx-auto max-w-sm space-y-6">
-		<Form v-slot="$form" :resolver="resolver" @submit="onSubmit" :validateOnBlur="true" :validateOnValueUpdate="false">
-			<div class="mb-6">
-				<h1 class="text-2xl font-medium tracking-tight">Log in to your account</h1>
-				<p class="text-muted-color">Enter your email to proceed</p>
-			</div>
+	<Form v-slot="$form" :resolver="resolver" @submit="onSubmit" :validateOnBlur="true" :validateOnValueUpdate="false">
+		<div class="mb-6">
+			<h1 class="text-2xl font-medium tracking-tight">Log in to your account</h1>
+			<p class="text-muted-color">Enter your email to proceed</p>
+		</div>
 
-			<div class="space-y-3">
-				<div>
-					<label class="sr-only"> Email </label>
-					<InputText name="email" ref="emailRef" fluid required />
+		<div class="space-y-3">
+			<div>
+				<label class="sr-only"> Email </label>
+				<InputText name="email" ref="emailRef" fluid required />
+				<Transition v-bind="heightTransition">
 					<Message v-if="$form.email?.error" severity="error" variant="simple">
 						{{ $form.email.error?.message }}
 					</Message>
-				</div>
+				</Transition>
+			</div>
 
-				<Button type="submit" label="Continue with Email" :icon="isLoading ? 'pi pi-spinner pi-spin' : ''" :loading="isLoading" fluid />
-			</div>
-		</Form>
-
-		<div class="relative">
-			<div class="absolute inset-0 flex items-center">
-				<span class="w-full border-t" />
-			</div>
-			<div class="relative flex justify-center text-sm">
-				<span class="bg-surface-0 px-2 text-muted-color"> or continue with </span>
-			</div>
+			<Button type="submit" label="Continue with Email" :icon="isLoading ? 'pi pi-spinner pi-spin' : ''" :loading="isLoading" fluid />
 		</div>
-
-		<Button
-			type="button"
-			severity="secondary"
-			label="Continue with Google"
-			:icon="isLoadingGoogle ? 'pi pi-spinner pi-spin' : 'pi pi-google'"
-			:disabled="isLoading || isLoadingGoogle"
-			:loading="isLoadingGoogle"
-			fluid
-			@click="googleSignIn" />
-
-		<p class="text-muted-foreground mt-6 px-8 text-center text-sm">
-			By continuing, you agree to our
-			<NuxtLink to="#" class="inline-block underline underline-offset-4 hover:text-primary"> Terms of Service </NuxtLink>
-			and
-			<NuxtLink to="#" class="inline-block underline underline-offset-4 hover:text-primary"> Privacy Policy </NuxtLink>
-			.
-		</p>
-	</div>
+	</Form>
 </template>
 
 <script setup lang="ts">
@@ -54,13 +27,13 @@
 	import * as yup from "yup";
 
 	const isLoading = ref(false);
-	const isLoadingGoogle = ref(false);
 	const loginAccount = useState("loginAccount");
 	const loginName = useState("loginName");
+	const emailRef = ref();
 
 	const resolver = yupResolver(
 		yup.object({
-			email: yup.string().email("Please emter a valid email address"),
+			email: yup.string().email("Please enter a valid email address"),
 		}),
 	);
 
@@ -91,12 +64,7 @@
 		}, 1000);
 	};
 
-	const googleSignIn = () => {
-		isLoadingGoogle.value = true;
-
-		setTimeout(async () => {
-			isLoadingGoogle.value = false;
-			await navigateTo({ name: "dashboard" });
-		}, 1000);
-	};
+	onMounted(() => {
+		emailRef.value.$el.focus();
+	});
 </script>
