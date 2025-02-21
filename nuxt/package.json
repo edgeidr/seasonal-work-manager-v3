@@ -16,6 +16,7 @@
     "@fullcalendar/vue3": "^6.1.15",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@primevue/forms": "^4.2.5",
     "@primevue/themes": "^4.2.3",
     "@vueuse/nuxt": "^12.2.0",
     "nuxt": "^3.14.1592",
@@ -23,7 +24,8 @@
     "primevue": "^4.2.3",
     "tailwindcss-primeui": "^0.3.4",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@primevue/nuxt-module": "^4.2.3",

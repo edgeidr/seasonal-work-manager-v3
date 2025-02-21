@@ -1,0 +1,29 @@
+[
+	{
+		"id": 1,
+		"firstName": "Edge",
+		"lastName": "Superadmin",
+		"email": "superadmin@gmail.com",
+		"password": "password",
+		"roleId": 1,
+		"role": "Superadmin"
+	},
+	{
+		"id": 2,
+		"firstName": "Edge",
+		"lastName": "Admin",
+		"email": "admin@gmail.com",
+		"password": "password",
+		"roleId": 2,
+		"role": "Admin"
+	},
+	{
+		"id": 3,
+		"firstName": "Edge",
+		"lastName": "User",
+		"email": "user@gmail.com",
+		"password": "password",
+		"roleId": 3,
+		"role": "User"
+	}
+]

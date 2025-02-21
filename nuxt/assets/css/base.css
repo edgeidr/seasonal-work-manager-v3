@@ -2,6 +2,12 @@
 @import "primevue";
 
 @layer tailwind-base {
+	:root {
+		interpolate-size: allow-keywords;
+
+		@apply text-[14px];
+	}
+
 	body {
 		@apply font-[Poppins];
 	}

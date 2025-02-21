@@ -1,68 +1,94 @@
 <template>
-	<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-		<div class="flex flex-col space-y-2 text-center">
-			<h1 class="text-2xl font-semibold tracking-tight">Welcome back!</h1>
-			<p class="text-sm text-muted-foreground">Enter your email below to sign in</p>
-		</div>
-
-		<div class="grid gap-6">
-			<form @submit.prevent="onSubmit">
-				<div class="grid gap-2">
-					<div class="grid gap-1">
-						<label class="sr-only" for="email"> Email </label>
-						<InputText placeholder="name@example.com" type="email" />
-					</div>
-					<Button
-						type="submit"
-						label="Sign In with Email"
-						:icon="isLoading ? 'pi pi-spinner pi-spin' : ''"
-						:loading="isLoading"
-						:disabled="isLoading || isLoadingGoogle" />
-				</div>
-			</form>
-			<div class="relative">
-				<div class="absolute inset-0 flex items-center">
-					<span class="w-full border-t" />
-				</div>
-				<div class="relative flex justify-center text-xs">
-					<span class="bg-surface-0 px-2 text-muted-foreground"> or continue with </span>
-				</div>
+	<div class="mx-auto max-w-sm space-y-6">
+		<Form v-slot="$form" :resolver="resolver" @submit="onSubmit" :validateOnBlur="true" :validateOnValueUpdate="false">
+			<div class="mb-6">
+				<h1 class="text-2xl font-medium tracking-tight">Log in to your account</h1>
+				<p class="text-muted-color">Enter your email to proceed</p>
 			</div>
-			<Button
-				type="button"
-				severity="secondary"
-				label="Google"
-				:icon="isLoadingGoogle ? 'pi pi-spinner pi-spin' : 'pi pi-google'"
-				:disabled="isLoading || isLoadingGoogle"
-				:loading="isLoadingGoogle"
-				@click="googleSignIn" />
+
+			<div class="space-y-3">
+				<div>
+					<label class="sr-only"> Email </label>
+					<InputText name="email" ref="emailRef" fluid required />
+					<Message v-if="$form.email?.error" severity="error" variant="simple">
+						{{ $form.email.error?.message }}
+					</Message>
+				</div>
+
+				<Button type="submit" label="Continue with Email" :icon="isLoading ? 'pi pi-spinner pi-spin' : ''" :loading="isLoading" fluid />
+			</div>
+		</Form>
+
+		<div class="relative">
+			<div class="absolute inset-0 flex items-center">
+				<span class="w-full border-t" />
+			</div>
+			<div class="relative flex justify-center text-sm">
+				<span class="bg-surface-0 px-2 text-muted-color"> or continue with </span>
+			</div>
 		</div>
 
-		<p class="px-8 text-center text-sm text-muted-foreground">
-			By clicking continue, you agree to our
-			<NuxtLink to="#" class="underline underline-offset-4 hover:text-primary"> Terms of Service </NuxtLink>
+		<Button
+			type="button"
+			severity="secondary"
+			label="Continue with Google"
+			:icon="isLoadingGoogle ? 'pi pi-spinner pi-spin' : 'pi pi-google'"
+			:disabled="isLoading || isLoadingGoogle"
+			:loading="isLoadingGoogle"
+			fluid
+			@click="googleSignIn" />
+
+		<p class="text-muted-foreground mt-6 px-8 text-center text-sm">
+			By continuing, you agree to our
+			<NuxtLink to="#" class="inline-block underline underline-offset-4 hover:text-primary"> Terms of Service </NuxtLink>
 			and
-			<NuxtLink to="#" class="underline underline-offset-4 hover:text-primary"> Privacy Policy </NuxtLink>
+			<NuxtLink to="#" class="inline-block underline underline-offset-4 hover:text-primary"> Privacy Policy </NuxtLink>
 			.
 		</p>
 	</div>
 </template>
 
 <script setup lang="ts">
-	definePageMeta({
-		layout: "authentication",
-	});
+	import type { FormSubmitEvent } from "@primevue/forms";
+	import { yupResolver } from "@primevue/forms/resolvers/yup";
+	import * as yup from "yup";
 
 	const isLoading = ref(false);
 	const isLoadingGoogle = ref(false);
+	const loginAccount = useState("loginAccount");
+	const loginName = useState("loginName");
 
-	const onSubmit = () => {
+	const resolver = yupResolver(
+		yup.object({
+			email: yup.string().email("Please emter a valid email address"),
+		}),
+	);
+
+	const onSubmit = ({ valid, states, values, errors }: FormSubmitEvent) => {
+		if (!valid) return;
+
 		isLoading.value = true;
 
 		setTimeout(async () => {
 			isLoading.value = false;
-			await navigateTo({ name: "index" });
-		}, 3000);
+
+			const account = await $fetch("/api/accounts/validate-email", {
+				method: "POST",
+				body: { email: values.email },
+			});
+
+			if (!account) {
+				states.email.error = { message: "Account does not exist" };
+				states.email.invalid = true;
+			} else {
+				const { email, firstName } = account;
+
+				loginAccount.value = email;
+				loginName.value = firstName;
+
+				navigateTo({ name: "login-verify" });
+			}
+		}, 1000);
 	};
 
 	const googleSignIn = () => {
@@ -70,7 +96,7 @@
 
 		setTimeout(async () => {
 			isLoadingGoogle.value = false;
-			await navigateTo({ name: "index" });
-		}, 3000);
+			await navigateTo({ name: "dashboard" });
+		}, 1000);
 	};
 </script>
