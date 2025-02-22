@@ -17,6 +17,15 @@ export default defineNuxtConfig({
 			leaveToClass: "opacity-0",
 			mode: "out-in",
 		},
+		pageTransition: {
+			enterFromClass: "opacity-0",
+			enterToClass: "",
+			enterActiveClass: "duration-200",
+			leaveActiveClass: "duration-200",
+			leaveFromClass: "",
+			leaveToClass: "opacity-0",
+			mode: "out-in",
+		},
 	},
 	runtimeConfig: {
 		public: {
