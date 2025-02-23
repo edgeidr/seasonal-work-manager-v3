@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 	const menu = ref();
-	const isLoggingOut = ref(false);
+	const logoutLoading = useState("logoutLoading");
 
 	const user: User = {
 		name: "Ian Del Rosario",
@@ -56,7 +56,7 @@
 			},
 			{
 				label: "Log out",
-				icon: isLoggingOut.value ? "pi pi-spinner pi-spin" : "pi pi-sign-out",
+				icon: logoutLoading.value ? "pi pi-spinner pi-spin" : "pi pi-sign-out",
 				command: signOut,
 			},
 		];
@@ -67,10 +67,10 @@
 	});
 
 	const signOut = () => {
-		isLoggingOut.value = true;
+		logoutLoading.value = true;
 
 		setTimeout(async () => {
-			isLoggingOut.value = false;
+			logoutLoading.value = false;
 			await navigateTo({ name: "login" });
 		}, 3000);
 	};

@@ -47,7 +47,7 @@
 
 		setTimeout(async () => {
 			isLoadingGoogle.value = false;
-			await navigateTo({ name: "dashboard" });
+			await navigateTo({ name: "schedules" });
 		}, 1000);
 	};
 </script>

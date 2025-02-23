@@ -6,4 +6,5 @@
 	</ScrollPanel>
 
 	<ConfirmPopup></ConfirmPopup>
+	<LogoutDialog />
 </template>
