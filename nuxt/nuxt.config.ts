@@ -35,8 +35,8 @@ export default defineNuxtConfig({
 	},
 	modules: ["@primevue/nuxt-module", "@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@vueuse/nuxt"],
 	primevue: {
-		importTheme: { from: "@/primevue/themes/aura", as: "auraTheme" },
-		importPT: { from: "@/primevue/passthrough/global", as: "globalPT" },
+		importTheme: { from: "@/primevue/theme", as: "auraTheme" },
+		importPT: { from: "@/primevue/globalPT", as: "globalPT" },
 		options: {
 			ptOptions: { mergeProps: true },
 			ripple: true,
@@ -52,8 +52,7 @@ export default defineNuxtConfig({
 	},
 	googleFonts: {
 		families: {
-			Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-			Montserrat: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+			Inter: [100, 200, 300, 400, 500, 600, 700, 800, 900],
 			Roboto: [100, 200, 300, 400, 500, 600, 700, 800, 900],
 		},
 	},

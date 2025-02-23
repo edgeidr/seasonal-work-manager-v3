@@ -9,7 +9,7 @@
 	}
 
 	body {
-		@apply font-[Poppins];
+		@apply font-[Inter];
 	}
 
 	h1 {

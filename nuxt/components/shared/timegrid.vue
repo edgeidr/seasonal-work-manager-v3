@@ -1,6 +1,6 @@
 <template>
 	<div class="flex h-full gap-3">
-		<ScrollPanel class="w-full">
+		<ScrollPanel class="w-full" :pt="pt.scrollpanel">
 			<FullCalendar ref="calendarRef" :options="calendarOptions" class="h-px" />
 		</ScrollPanel>
 
@@ -17,14 +17,8 @@
 						size="small"
 						@click="$emit('update:view', item.value)"
 						fluid
-						:pt="{
-							root: {
-								class: [
-									{ 'bg-surface-0 shadow-sm text-surface-700': props.view == item.value },
-									{ 'hover:bg-transparent hover:text-surface-700': props.view != item.value },
-								],
-							},
-						}" />
+						:data-value="item.value"
+						:pt="pt.button" />
 				</div>
 			</div>
 
@@ -36,17 +30,7 @@
 					fluid
 					inline
 					selectOtherMonths
-					:pt="{
-						panel: { class: 'border-none bg-transparent px-0' },
-						header: { class: 'border-none bg-transparent' },
-						tableBodyRow: {
-							class: [
-								{
-									'p-datepicker-week': props.view == 'timeGridWeek',
-								},
-							],
-						},
-					}" />
+					:pt="pt.datepicker" />
 			</div>
 
 			<div class="px-3">
@@ -61,6 +45,7 @@
 	import interactionPlugin from "@fullcalendar/interaction";
 	import timeGridPlugin from "@fullcalendar/timegrid";
 	import { formatDate, type CalendarApi, type CalendarOptions } from "@fullcalendar/core";
+	import type { ButtonPassThroughOptions, DatePickerPassThroughOptions, ScrollPanelPassThroughOptions } from "primevue";
 
 	const props = defineProps({
 		date: {
@@ -73,6 +58,30 @@
 		},
 	});
 
+	const pt = reactive({
+		scrollpanel: <ScrollPanelPassThroughOptions>{
+			barY: { class: "translate-x-full" },
+		},
+		datepicker: <DatePickerPassThroughOptions>{
+			panel: { class: "border-none bg-transparent px-0" },
+			header: { class: "border-none bg-transparent" },
+			tableBodyRow: {
+				class: [
+					{
+						"p-datepicker-week": props.view == "timeGridWeek",
+					},
+				],
+			},
+		},
+		button: <ButtonPassThroughOptions>{
+			root: ({ instance }) => ({
+				class: [
+					{ "bg-surface-0 shadow-sm text-surface-700": props.view == instance.$attrs["data-value"] },
+					{ "hover:bg-transparent hover:text-surface-700": props.view != instance.$attrs["data-value"] },
+				],
+			}),
+		},
+	});
 	const calendarRef = ref();
 	const calendarViews = [
 		{
